@@ -61,11 +61,11 @@
             pointer-events: none;
         }
 
-        /* --- BUTTERFLIES (Organic fluttering paths with NO rotation) --- */
+        /* --- BUTTERFLIES (Slow, organic fluttering paths with NO rotation) --- */
         .butterfly {
             position: absolute;
             font-size: 1.5rem;
-            opacity: 0.5;
+            opacity: 0.45;
             bottom: -40px;
             animation: flutterButterfly infinite ease-in-out;
             filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1));
@@ -73,19 +73,19 @@
 
         @keyframes flutterButterfly {
             0% { transform: translate(0, 0); opacity: 0; }
-            10% { opacity: 0.5; }
-            30% { transform: translate(25px, -300px); }
-            50% { transform: translate(-20px, -600px); }
-            70% { transform: translate(20px, -900px); }
-            90% { opacity: 0.5; }
+            10% { opacity: 0.45; }
+            30% { transform: translate(20px, -300px); }
+            50% { transform: translate(-15px, -600px); }
+            70% { transform: translate(15px, -900px); }
+            90% { opacity: 0.45; }
             100% { transform: translate(-10px, -1200px); opacity: 0; }
         }
 
-        /* --- LEAVES (Random drift with continuous spin/rotation) --- */
+        /* --- LEAVES (Slow random drift with continuous gentle spin) --- */
         .floating-leaf {
             position: absolute;
             font-size: 1.6rem;
-            opacity: 0.45;
+            opacity: 0.4;
             bottom: -40px;
             animation: driftLeaf infinite ease-in-out;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
@@ -93,23 +93,19 @@
 
         @keyframes driftLeaf {
             0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
-            12% { opacity: 0.45; }
-            35% { transform: translate(-22px, -350px) rotate(120deg); }
-            60% { transform: translate(25px, -700px) rotate(240deg); }
-            85% { transform: translate(-15px, -1050px) rotate(320deg); opacity: 0.45; }
-            100% { transform: translate(15px, -1250px) rotate(360deg); opacity: 0; }
+            12% { opacity: 0.4; }
+            35% { transform: translate(-18px, -350px) rotate(120deg); }
+            60% { transform: translate(20px, -700px) rotate(240deg); }
+            85% { transform: translate(-12px, -1050px) rotate(320deg); opacity: 0.4; }
+            100% { transform: translate(12px, -1250px) rotate(360deg); opacity: 0; }
         }
 
-        /* --- UNIQUE RANDOM SPEEDS & DELAYS --- */
-        .b1 { left: 10%; animation-duration: 13.5s; animation-delay: 0s; }
-        .b2 { left: 75%; animation-duration: 17.2s; animation-delay: 4.1s; }
-        .b3 { left: 40%; animation-duration: 11.8s; animation-delay: 2.3s; }
-        .b4 { left: 85%; animation-duration: 15.6s; animation-delay: 6.7s; }
+        /* --- SLOWER, RANDOM SPEEDS & SPREAD-OUT DELAYS --- */
+        .b1 { left: 15%; animation-duration: 22s; animation-delay: 0s; }
+        .b2 { left: 70%; animation-duration: 26s; animation-delay: 7s; }
 
-        .l1 { left: 20%; animation-duration: 16.3s; animation-delay: 1.5s; }
-        .l2 { left: 65%; animation-duration: 12.1s; animation-delay: 5.2s; }
-        .l3 { left: 15%; animation-duration: 19.4s; animation-delay: 3.8s; }
-        .l4 { left: 50%; animation-duration: 14.7s; animation-delay: 8.0s; }
+        .l1 { left: 30%; animation-duration: 24s; animation-delay: 3s; }
+        .l2 { left: 80%; animation-duration: 28s; animation-delay: 11s; }
 
         /* --- STATIC JUNGLE ANIMALS EMBEDDED ON THE PANEL EDGES --- */
         .panel-animal {
@@ -350,19 +346,15 @@
 
     <div class="invitation-card">
         
-        <!-- FLOATING BUTTERFLIES & ROTATING LEAVES WITH RANDOM SPEEDS & NON-LINEAR DRIFT -->
+        <!-- SLOW, SPARSE FLOATING BUTTERFLIES & ROTATING LEAVES -->
         <div class="floating-decor-container">
-            <!-- Butterflies (Fly naturally without rotating) -->
+            <!-- Butterflies (Slow, fluttering naturally without rotation) -->
             <div class="butterfly b1">🦋</div>
             <div class="butterfly b2">🦋</div>
-            <div class="butterfly b3">🦋</div>
-            <div class="butterfly b4">🦋</div>
 
-            <!-- Leaves (Drift randomly with continuous rotation) -->
+            <!-- Leaves (Slow, random drifting with continuous gentle rotation) -->
             <div class="floating-leaf l1">🌿</div>
             <div class="floating-leaf l2">🍃</div>
-            <div class="floating-leaf l3">🌿</div>
-            <div class="floating-leaf l4">🍃</div>
         </div>
 
         <!-- STATIC JUNGLE ANIMALS EMBEDDED ON THE PANEL EDGES -->
