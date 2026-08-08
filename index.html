@@ -8,11 +8,11 @@
     <style>
         /* --- MODERN SAFARI COLOR PALETTE --- */
         :root {
-            --jungle-dark: #2C5F2D; /* Deep Forest Green */
-            --jungle-light: #97BC62; /* Sage/Leaf Green */
-            --safari-gold: #D4AF37; /* Metallic Gold */
-            --safari-sand: #F4EBD0; /* Sand/Beige */
-            --text-main: #2D3B2D; /* Dark Earthy Green for text */
+            --jungle-dark: #2C5F2D; 
+            --jungle-light: #97BC62; 
+            --safari-gold: #D4AF37; 
+            --safari-sand: #F4EBD0; 
+            --text-main: #2D3B2D; 
             --text-light: #5A6B5A;
         }
 
@@ -20,7 +20,6 @@
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
-            /* Soft, earthy modern background */
             background: linear-gradient(135deg, #f3f9f1 0%, #e1eedd 100%);
             min-height: 100vh;
             display: flex;
@@ -31,8 +30,8 @@
             overflow-x: hidden;
         }
 
-        /* --- MODERN FLOATING LEAVES (Replaced Balloons) --- */
-        .leaf-container {
+        /* --- BACKGROUND ANIMALS --- */
+        .animal-container {
             position: fixed;
             width: 100%;
             height: 100%;
@@ -43,28 +42,77 @@
             overflow: hidden;
         }
 
+        .safari-animal {
+            position: absolute;
+            opacity: 0.12; /* Kept very subtle so the text remains easy to read */
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+
+        /* Specific Animal Positions & Animations */
+        .animal-giraffe { 
+            bottom: -30px; 
+            left: -20px; 
+            font-size: 10rem; 
+            animation: peekGiraffe 8s ease-in-out infinite; 
+        }
+        
+        .animal-elephant { 
+            bottom: 20px; 
+            right: -10px; 
+            font-size: 8rem; 
+            transform: scaleX(-1);
+            animation: strollElephant 6s ease-in-out infinite; 
+        }
+        
+        .animal-monkey { 
+            top: 10%; 
+            right: 5%; 
+            font-size: 5rem; 
+            transform-origin: top center;
+            animation: swingMonkey 5s ease-in-out infinite; 
+        }
+        
+        .animal-lion {
+            top: 40%;
+            left: 5%;
+            font-size: 6rem;
+            opacity: 0.08;
+            animation: breatheLion 7s ease-in-out infinite;
+        }
+
+        @keyframes peekGiraffe { 0%, 100% { transform: rotate(10deg) translateX(0); } 50% { transform: rotate(12deg) translateX(15px); } }
+        @keyframes strollElephant { 0%, 100% { transform: scaleX(-1) translateY(0); } 50% { transform: scaleX(-1) translateY(-10px); } }
+        @keyframes swingMonkey { 0%, 100% { transform: rotate(-15deg); } 50% { transform: rotate(5deg); } }
+        @keyframes breatheLion { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+        /* --- MODERN FLOATING LEAVES --- */
+        .leaf-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1; /* Slightly above animals */
+            pointer-events: none;
+            overflow: hidden;
+        }
+
         .leaf {
             position: absolute;
             bottom: -100px;
             font-size: 2.5rem;
-            opacity: 0.25; /* Subtle and modern */
+            opacity: 0.25;
             animation: floatLeaf infinite linear;
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
         }
 
-        .leaf:nth-child(1) { left: 10%; animation-duration: 18s; animation-delay: 0s; font-size: 3rem; }
+        .leaf:nth-child(1) { left: 10%; animation-duration: 18s; font-size: 3rem; }
         .leaf:nth-child(2) { left: 25%; animation-duration: 22s; animation-delay: 4s; transform: scaleX(-1); }
         .leaf:nth-child(3) { left: 45%; animation-duration: 15s; animation-delay: 1s; font-size: 2rem; }
         .leaf:nth-child(4) { left: 65%; animation-duration: 25s; animation-delay: 7s; }
-        .leaf:nth-child(5) { left: 80%; animation-duration: 19s; animation-delay: 3s; font-size: 3.5rem; transform: scaleX(-1); }
-        .leaf:nth-child(6) { left: 90%; animation-duration: 21s; animation-delay: 5s; }
+        .leaf:nth-child(5) { left: 80%; animation-duration: 19s; animation-delay: 3s; font-size: 3.5rem; }
 
-        @keyframes floatLeaf {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.3; }
-            90% { opacity: 0.3; }
-            100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
-        }
+        @keyframes floatLeaf { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 10% { opacity: 0.3; } 90% { opacity: 0.3; } 100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; } }
 
         /* --- INVITATION CARD --- */
         .invitation-card {
@@ -93,7 +141,6 @@
             overflow: hidden;
         }
 
-        /* Subtle jungle pattern overlay in the header */
         .header-image::before {
             content: "🌿 🦁 🦒 🐘";
             position: absolute;
@@ -123,7 +170,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- MODERN ORGANIC PHOTO FRAME (SAFARI THEME) --- */
+        /* --- MODERN ORGANIC PHOTO FRAME --- */
         .photo-wrapper {
             position: relative;
             width: 210px;
@@ -135,7 +182,6 @@
             z-index: 5;
         }
 
-        /* The glowing gradient background (Green & Gold) */
         .photo-wrapper::before {
             content: '';
             position: absolute;
@@ -149,7 +195,6 @@
             opacity: 0.9;
         }
 
-        /* The actual photo container clipping the image */
         .photo-container {
             width: 100%;
             height: 100%;
@@ -188,14 +233,7 @@
         /* --- CONTENT & FORMS --- */
         .content-section { padding: 10px 30px 35px 30px; }
         
-        .event-details { 
-            background: #FAFAFA; 
-            border: 1px solid #EAEAEA; 
-            border-radius: 16px; 
-            padding: 20px; 
-            margin-bottom: 25px; 
-        }
-        
+        .event-details { background: #FAFAFA; border: 1px solid #EAEAEA; border-radius: 16px; padding: 20px; margin-bottom: 25px; }
         .detail-row { display: flex; align-items: center; margin-bottom: 12px; font-size: 0.95em; }
         .detail-icon { font-size: 1.3em; margin-right: 15px; width: 24px; text-align: center; }
         
@@ -209,51 +247,13 @@
         .form-group { margin-bottom: 18px; text-align: left; }
         label { display: block; margin-bottom: 8px; font-size: 0.85em; font-weight: 600; color: var(--text-light); }
         
-        input, select { 
-            width: 100%; 
-            padding: 14px; 
-            border: 2px solid #eee; 
-            border-radius: 10px; 
-            font-family: 'Poppins', sans-serif; 
-            font-size: 0.95em; 
-            box-sizing: border-box;
-            background: #FAFAFA;
-            color: var(--text-main);
-        }
-        
-        input:focus, select:focus { 
-            outline: none; 
-            border-color: var(--jungle-light); 
-            background: #fff;
-            box-shadow: 0 0 0 4px rgba(151, 188, 98, 0.15); 
-        }
+        input, select { width: 100%; padding: 14px; border: 2px solid #eee; border-radius: 10px; font-family: 'Poppins', sans-serif; font-size: 0.95em; box-sizing: border-box; background: #FAFAFA; color: var(--text-main); }
+        input:focus, select:focus { outline: none; border-color: var(--jungle-light); background: #fff; box-shadow: 0 0 0 4px rgba(151, 188, 98, 0.15); }
         
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 
-        button.submit-btn { 
-            background: var(--jungle-dark); 
-            color: white; 
-            border: none; 
-            padding: 16px; 
-            width: 100%; 
-            border-radius: 12px; 
-            font-family: 'Poppins', sans-serif; 
-            font-size: 1.1em; 
-            font-weight: 600; 
-            cursor: pointer; 
-            margin-top: 10px; 
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 6px 15px rgba(44, 95, 45, 0.2);
-        }
-        
-        button.submit-btn:hover { 
-            background: var(--safari-gold); 
-            color: var(--text-main);
-            transform: translateY(-2px); 
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3); 
-        }
+        button.submit-btn { background: var(--jungle-dark); color: white; border: none; padding: 16px; width: 100%; border-radius: 12px; font-family: 'Poppins', sans-serif; font-size: 1.1em; font-weight: 600; cursor: pointer; margin-top: 10px; transition: all 0.3s; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 6px 15px rgba(44, 95, 45, 0.2); }
+        button.submit-btn:hover { background: var(--safari-gold); color: var(--text-main); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3); }
 
         .hidden { display: none !important; }
         #thankYouMessage { text-align: center; padding: 50px 25px; }
@@ -261,14 +261,18 @@
 </head>
 <body>
 
+    <!-- MODERN SAFARI ANIMALS -->
+    <div class="animal-container">
+        <div class="safari-animal animal-giraffe">🦒</div>
+        <div class="safari-animal animal-elephant">🐘</div>
+        <div class="safari-animal animal-monkey">🐒</div>
+        <div class="safari-animal animal-lion">🦁</div>
+    </div>
+
     <!-- MODERN SAFARI FLOATING LEAVES -->
     <div class="leaf-container">
-        <div class="leaf">🌿</div>
-        <div class="leaf">🍃</div>
-        <div class="leaf">🌿</div>
-        <div class="leaf">🍃</div>
-        <div class="leaf">🌿</div>
-        <div class="leaf">🍃</div>
+        <div class="leaf">🌿</div><div class="leaf">🍃</div><div class="leaf">🌿</div>
+        <div class="leaf">🍃</div><div class="leaf">🌿</div>
     </div>
 
     <div class="invitation-card">
