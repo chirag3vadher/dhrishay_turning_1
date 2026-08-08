@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dhrishay's Birthday RSVP - Modern Edition</title>
+    <title>Dhrishay's 1st Birthday Safari!</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        /* --- CORE COLORS & STYLES --- */
+        /* --- MODERN SAFARI COLOR PALETTE --- */
         :root {
-            --primary: #FF7E67;
-            --secondary: #0984E3;
-            --accent-yellow: #FFD166;
-            --accent-purple: #9B59B6;
-            --accent-green: #2ECC71;
-            --text-main: #2D3436;
-            --text-light: #636E72;
+            --jungle-dark: #2C5F2D; /* Deep Forest Green */
+            --jungle-light: #97BC62; /* Sage/Leaf Green */
+            --safari-gold: #D4AF37; /* Metallic Gold */
+            --safari-sand: #F4EBD0; /* Sand/Beige */
+            --text-main: #2D3B2D; /* Dark Earthy Green for text */
+            --text-light: #5A6B5A;
         }
 
         body {
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
-            background: url('https://www.transparenttextures.com/patterns/cubes.png'), linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            /* Soft, earthy modern background */
+            background: linear-gradient(135deg, #f3f9f1 0%, #e1eedd 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -31,29 +31,40 @@
             overflow-x: hidden;
         }
 
-        /* --- FESTIVE DECORATIONS --- */
-        .balloon-container, .confetti-container { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; pointer-events: none; }
-        .balloon { position: absolute; bottom: -150px; width: 80px; height: 100px; border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%; opacity: 0.7; animation: floatBallon infinite linear; }
-        .balloon::after { content: ""; position: absolute; bottom: -15px; left: 35px; width: 10px; height: 15px; background: rgba(0,0,0,0.1); border-radius: 50%; }
-        .balloon:nth-child(1) { background: var(--primary); left: 5%; animation-duration: 15s; }
-        .balloon:nth-child(2) { background: var(--accent-yellow); left: 20%; animation-duration: 18s; animation-delay: 2s; }
-        .balloon:nth-child(3) { background: var(--secondary); left: 40%; animation-duration: 20s; animation-delay: 5s; width: 60px; height: 75px; }
-        .balloon:nth-child(4) { background: var(--accent-purple); left: 60%; animation-duration: 16s; animation-delay: 1s; }
-        .balloon:nth-child(5) { background: var(--accent-green); left: 80%; animation-duration: 22s; animation-delay: 7s; }
-        .balloon:nth-child(6) { background: var(--primary); left: 90%; animation-duration: 19s; animation-delay: 3s; width: 70px; height: 90px;}
+        /* --- MODERN FLOATING LEAVES (Replaced Balloons) --- */
+        .leaf-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
 
-        @keyframes floatBallon { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 10% { opacity: 0.7; } 90% { opacity: 0.7; } 100% { transform: translateY(-120vh) rotate(15deg); opacity: 0; } }
+        .leaf {
+            position: absolute;
+            bottom: -100px;
+            font-size: 2.5rem;
+            opacity: 0.25; /* Subtle and modern */
+            animation: floatLeaf infinite linear;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
 
-        .confetti { position: absolute; width: 10px; height: 10px; background: var(--accent-yellow); opacity: 0.6; animation: confettiFall infinite linear; }
-        .confetti:nth-child(even) { background: var(--secondary); border-radius: 50%; }
-        .confetti:nth-child(3n) { background: var(--accent-purple); }
-        .confetti:nth-child(1) { left: 10%; animation-duration: 7s; animation-delay: 1s; }
-        .confetti:nth-child(2) { left: 20%; animation-duration: 6s; }
-        .confetti:nth-child(3) { left: 30%; animation-duration: 8s; animation-delay: 2s; }
-        .confetti:nth-child(4) { left: 40%; animation-duration: 7s; animation-delay: 3s; }
-        .confetti:nth-child(5) { left: 50%; animation-duration: 9s; }
+        .leaf:nth-child(1) { left: 10%; animation-duration: 18s; animation-delay: 0s; font-size: 3rem; }
+        .leaf:nth-child(2) { left: 25%; animation-duration: 22s; animation-delay: 4s; transform: scaleX(-1); }
+        .leaf:nth-child(3) { left: 45%; animation-duration: 15s; animation-delay: 1s; font-size: 2rem; }
+        .leaf:nth-child(4) { left: 65%; animation-duration: 25s; animation-delay: 7s; }
+        .leaf:nth-child(5) { left: 80%; animation-duration: 19s; animation-delay: 3s; font-size: 3.5rem; transform: scaleX(-1); }
+        .leaf:nth-child(6) { left: 90%; animation-duration: 21s; animation-delay: 5s; }
 
-        @keyframes confettiFall { 0% { transform: translateY(-50px) rotate(0deg); } 100% { transform: translateY(110vh) rotate(360deg); } }
+        @keyframes floatLeaf {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+        }
 
         /* --- INVITATION CARD --- */
         .invitation-card {
@@ -63,7 +74,7 @@
             padding: 0;
             max-width: 450px;
             width: 92%;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 50px rgba(44, 95, 45, 0.15);
             margin: 40px 0;
             animation: slideUp 0.7s ease-out;
             position: relative;
@@ -73,40 +84,69 @@
         @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
         .header-image {
-            background: linear-gradient(135deg, var(--primary), #FF5252);
-            padding: 40px 20px 80px 20px; /* Extra padding for the new photo layout */
+            background: linear-gradient(135deg, var(--jungle-dark), var(--jungle-light));
+            padding: 45px 20px 85px 20px;
             text-align: center;
             color: white;
             border-radius: 24px 24px 0 0;
+            position: relative;
+            overflow: hidden;
         }
 
-        .header-image h1 { margin: 0; font-size: 2.2em; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.2); animation: titleGlow 3s infinite alternate; }
-        @keyframes titleGlow { from { text-shadow: 0 0 5px rgba(255,255,255,0.2); } to { text-shadow: 0 0 20px rgba(255,255,255,0.7), 0 0 10px rgba(255,126,103,0.5); } }
+        /* Subtle jungle pattern overlay in the header */
+        .header-image::before {
+            content: "🌿 🦁 🦒 🐘";
+            position: absolute;
+            top: 10px;
+            left: 0;
+            width: 100%;
+            font-size: 3rem;
+            opacity: 0.05;
+            letter-spacing: 20px;
+        }
 
-        /* --- MODERN ORGANIC PHOTO FRAME --- */
+        .header-image h1 { 
+            margin: 0; 
+            font-size: 2.3em; 
+            font-weight: 800; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--safari-sand);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3); 
+        }
+        
+        .header-image p {
+            font-weight: 300;
+            font-size: 1.1em;
+            margin-top: 8px;
+            color: white;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- MODERN ORGANIC PHOTO FRAME (SAFARI THEME) --- */
         .photo-wrapper {
             position: relative;
-            width: 200px;
-            height: 200px;
-            margin: -100px auto 20px auto;
+            width: 210px;
+            height: 210px;
+            margin: -105px auto 25px auto;
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 5;
         }
 
-        /* The glowing gradient background */
+        /* The glowing gradient background (Green & Gold) */
         .photo-wrapper::before {
             content: '';
             position: absolute;
-            inset: -5px;
-            background: linear-gradient(45deg, #FF7E67, #FFD166, #0984E3, #9B59B6);
+            inset: -4px;
+            background: linear-gradient(45deg, var(--jungle-dark), var(--safari-gold), var(--jungle-light), #fff);
             background-size: 400% 400%;
             border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
             animation: glowGradient 8s ease infinite, morphShape 8s ease-in-out infinite both alternate;
             z-index: -1;
-            filter: blur(12px);
-            opacity: 0.8;
+            filter: blur(10px);
+            opacity: 0.9;
         }
 
         /* The actual photo container clipping the image */
@@ -116,7 +156,7 @@
             overflow: hidden;
             background: white;
             border: 4px solid white;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 25px rgba(44, 95, 45, 0.2);
             border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
             animation: morphShape 8s ease-in-out infinite both alternate;
         }
@@ -125,14 +165,13 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* Super smooth modern transition */
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .photo-wrapper:hover .photo-container img {
-            transform: scale(1.15) rotate(3deg);
+            transform: scale(1.15) rotate(2deg);
         }
 
-        /* Shape morphing animation */
         @keyframes morphShape {
             0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
             33% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
@@ -140,7 +179,6 @@
             100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
         }
 
-        /* Gradient shifting animation */
         @keyframes glowGradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -148,26 +186,74 @@
         }
 
         /* --- CONTENT & FORMS --- */
-        .content-section { padding: 10px 25px 30px 25px; }
-        .event-details { background: #fdfdfd; border: 1px solid #eee; border-radius: 16px; padding: 20px; margin-bottom: 25px; }
+        .content-section { padding: 10px 30px 35px 30px; }
+        
+        .event-details { 
+            background: #FAFAFA; 
+            border: 1px solid #EAEAEA; 
+            border-radius: 16px; 
+            padding: 20px; 
+            margin-bottom: 25px; 
+        }
+        
         .detail-row { display: flex; align-items: center; margin-bottom: 12px; font-size: 0.95em; }
         .detail-icon { font-size: 1.3em; margin-right: 15px; width: 24px; text-align: center; }
         
         .calendar-buttons { display: flex; gap: 10px; margin-top: 15px; border-top: 1px dashed #ddd; padding-top: 15px; }
         .cal-btn { flex: 1; background: #fff; border: 1px solid #ddd; color: var(--text-main); padding: 10px; border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 0.85em; font-weight: 600; cursor: pointer; text-align: center; text-decoration: none; transition: all 0.2s; }
-        .cal-btn:hover { border-color: var(--secondary); color: var(--secondary); background: #f0f8ff; transform: scale(1.03); }
+        .cal-btn:hover { border-color: var(--jungle-dark); color: var(--jungle-dark); background: #f3f9f1; transform: scale(1.03); }
 
         .divider { height: 1px; background: #eee; margin: 25px 0; }
-        h3 { margin: 0 0 15px 0; font-size: 1.3em; text-align: center; }
+        h3 { margin: 0 0 15px 0; font-size: 1.3em; text-align: center; color: var(--jungle-dark); text-transform: uppercase; letter-spacing: 1px;}
 
         .form-group { margin-bottom: 18px; text-align: left; }
         label { display: block; margin-bottom: 8px; font-size: 0.85em; font-weight: 600; color: var(--text-light); }
-        input, select { width: 100%; padding: 14px; border: 2px solid #eee; border-radius: 10px; font-family: 'Poppins', sans-serif; font-size: 0.95em; box-sizing: border-box; }
-        input:focus, select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(255, 126, 103, 0.1); }
+        
+        input, select { 
+            width: 100%; 
+            padding: 14px; 
+            border: 2px solid #eee; 
+            border-radius: 10px; 
+            font-family: 'Poppins', sans-serif; 
+            font-size: 0.95em; 
+            box-sizing: border-box;
+            background: #FAFAFA;
+            color: var(--text-main);
+        }
+        
+        input:focus, select:focus { 
+            outline: none; 
+            border-color: var(--jungle-light); 
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(151, 188, 98, 0.15); 
+        }
+        
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 
-        button.submit-btn { background: var(--primary); color: white; border: none; padding: 16px; width: 100%; border-radius: 12px; font-family: 'Poppins', sans-serif; font-size: 1.1em; font-weight: 600; cursor: pointer; margin-top: 10px; transition: all 0.3s; }
-        button.submit-btn:hover { background: #ff6b52; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 126, 103, 0.4); }
+        button.submit-btn { 
+            background: var(--jungle-dark); 
+            color: white; 
+            border: none; 
+            padding: 16px; 
+            width: 100%; 
+            border-radius: 12px; 
+            font-family: 'Poppins', sans-serif; 
+            font-size: 1.1em; 
+            font-weight: 600; 
+            cursor: pointer; 
+            margin-top: 10px; 
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 15px rgba(44, 95, 45, 0.2);
+        }
+        
+        button.submit-btn:hover { 
+            background: var(--safari-gold); 
+            color: var(--text-main);
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3); 
+        }
 
         .hidden { display: none !important; }
         #thankYouMessage { text-align: center; padding: 50px 25px; }
@@ -175,21 +261,21 @@
 </head>
 <body>
 
-    <div class="balloon-container">
-        <div class="balloon"></div><div class="balloon"></div><div class="balloon"></div>
-        <div class="balloon"></div><div class="balloon"></div><div class="balloon"></div>
-    </div>
-
-    <div class="confetti-container">
-        <div class="confetti"></div><div class="confetti"></div><div class="confetti"></div>
-        <div class="confetti"></div><div class="confetti"></div>
+    <!-- MODERN SAFARI FLOATING LEAVES -->
+    <div class="leaf-container">
+        <div class="leaf">🌿</div>
+        <div class="leaf">🍃</div>
+        <div class="leaf">🌿</div>
+        <div class="leaf">🍃</div>
+        <div class="leaf">🌿</div>
+        <div class="leaf">🍃</div>
     </div>
 
     <div class="invitation-card">
         <div id="formContainer">
             <div class="header-image">
-                <h1>Dhrishay is turning older! 🎈</h1>
-                <p>You're invited to the birthday bash</p>
+                <h1>Dhrishay is a Wild One!</h1>
+                <p>Join our safari to celebrate his 1st Birthday</p>
             </div>
 
             <!-- MODERN ORGANIC SHAPE IMAGE -->
@@ -204,10 +290,10 @@
                     <div class="detail-row"><span class="detail-icon">📅</span><div><strong>Sunday, August 30, 2026</strong></div></div>
                     <div class="detail-row"><span class="detail-icon">⏰</span><div><strong>5:30 PM EST</strong></div></div>
                     <div class="detail-row"><span class="detail-icon">📍</span><div><strong>[Insert Your Address Here]</strong></div></div>
-                    <div class="detail-row"><span class="detail-icon">🎂</span><div style="font-size: 0.9em; color: var(--text-light);">Celebrating over the weekend before his actual birthday on Sept 2nd!</div></div>
+                    <div class="detail-row"><span class="detail-icon">🦁</span><div style="font-size: 0.9em; color: var(--text-light);">Celebrating a wild weekend before his actual birthday on Sept 2nd!</div></div>
 
                     <div class="calendar-buttons">
-                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Dhrishay%27s+Birthday+Party!&dates=20260830T213000Z/20260830T233000Z&details=Join+us+to+celebrate+Dhrishay%27s+birthday!&location=Brampton,+ON" target="_blank" class="cal-btn">📅 Google</a>
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Dhrishay%27s+1st+Birthday+Safari!&dates=20260830T213000Z/20260830T233000Z&details=Join+our+safari+to+celebrate+Dhrishay%27s+1st+birthday!&location=Brampton,+ON" target="_blank" class="cal-btn">📅 Google</a>
                         <button onclick="downloadICS()" class="cal-btn">🍎 Apple / Outlook</button>
                     </div>
                 </div>
@@ -226,8 +312,8 @@
                         <label for="attending">Will you be attending? *</label>
                         <select id="attending" name="Attending Status" onchange="toggleGuestFields()" required>
                             <option value="" disabled selected>Please select...</option>
-                            <option value="Yes">Yes, wouldn't miss it! 🎉</option>
-                            <option value="No">Sorry, can't make it 😔</option>
+                            <option value="Yes">Yes, ready for a wild time! 🦒</option>
+                            <option value="No">Sorry, can't make the trek 😔</option>
                         </select>
                     </div>
 
@@ -254,9 +340,9 @@
         </div>
 
         <div id="thankYouMessage" class="hidden">
-            <h1 style="color: var(--primary); margin-bottom: 10px;">🎉 Thank You!</h1>
+            <h1 style="color: var(--jungle-dark); margin-bottom: 10px;">🎉 Thank You!</h1>
             <p style="color: var(--text-light); font-size: 1.1em;">Your RSVP has been recorded. We can't wait to see you!</p>
-            <div style="font-size: 5rem; margin-top: 20px;">🎂</div>
+            <div style="font-size: 5rem; margin-top: 20px;">🦁🌿</div>
         </div>
     </div>
 
@@ -273,7 +359,7 @@
             event.preventDefault();
             const data = new FormData(event.target);
             const btn = document.querySelector('.submit-btn');
-            btn.innerHTML = 'Sending... ✨';
+            btn.innerHTML = 'Sending... 🌿';
             btn.style.opacity = '0.7';
 
             try {
@@ -294,11 +380,11 @@
         });
 
         function downloadICS() {
-            const icsData = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Dhrishay Birthday RSVP//EN\nBEGIN:VEVENT\nDTSTART:20260830T173000\nDTEND:20260830T193000\nSUMMARY:Dhrishay's Birthday Party!\nDESCRIPTION:Join us to celebrate Dhrishay's birthday!\nLOCATION:Our Home\nEND:VEVENT\nEND:VCALENDAR`;
+            const icsData = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Dhrishay Birthday RSVP//EN\nBEGIN:VEVENT\nDTSTART:20260830T173000\nDTEND:20260830T193000\nSUMMARY:Dhrishay's 1st Birthday Safari!\nDESCRIPTION:Join our safari to celebrate Dhrishay's 1st birthday!\nLOCATION:Our Home\nEND:VEVENT\nEND:VCALENDAR`;
             const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
             const link = document.createElement('a');
             link.href = window.URL.createObjectURL(blob);
-            link.setAttribute('download', 'dhrishay_birthday.ics');
+            link.setAttribute('download', 'dhrishay_safari.ics');
             document.body.appendChild(link); link.click(); document.body.removeChild(link);
         }
     </script>
