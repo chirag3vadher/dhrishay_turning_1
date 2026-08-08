@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhrishay's Birthday RSVP - Festive Photo Edition</title>
+    <!-- Import a modern, premium font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- CORE COLORS & STYLES --- */
+        :root {
+            --primary: #FF7E67; /* Birthday Red */
+            --secondary: #0984E3; /* Blue accent for buttons */
+            --accent-yellow: #FFD166;
+            --accent-purple: #9B59B6;
+            --accent-green: #2ECC71;
+            --text-main: #2D3436;
+            --text-light: #636E72;
+            --bg-color: #F8F9FA;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('https://www.transparenttextures.com/patterns/cubes.png'), linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column; /* Stack card and separate functional blocks */
+            justify-content: center;
+            align-items: center;
+            color: var(--text-main);
+            overflow-x: hidden; /* Prevent horizontal scroll from balloons */
+            position: relative;
+        }
+
+        /* --- FESTIVE DECORATIONS (Existing: Flying Balloons and Confetti) --- */
+        .balloon-container, .confetti-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0; /* Behind everything */
+            pointer-events: none; /* Let clicks pass through */
+        }
+        /* Existing balloon and confetti CSS details remain, pointing to existing class names */
+        .balloon { position: absolute; bottom: -150px; width: 80px; height: 100px; border-radius: 50%; opacity: 0.7; animation: floatBallon infinite linear; }
+        @keyframes floatBallon { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 10% { opacity: 0.7; } 90% { opacity: 0.7; } 100% { transform: translateY(-120vh) rotate(15deg); opacity: 0; } }
+        /* Add nth-child balloon variations from existing code for colorful effects */
+        .balloon:nth-child(1) { background: var(--primary); left: 5%; animation-duration: 15s; }
+        .balloon:nth-child(2) { background: var(--accent-yellow); left: 20%; animation-duration: 18s; animation-delay: 2s; }
+        /* (Continue adding other balloon styles from existing code) */
+
+        .confetti { position: absolute; width: 10px; height: 10px; background: var(--accent-yellow); opacity: 0.6; animation: confettiFall infinite linear; }
+        @keyframes confettiFall { 0% { transform: translateY(-50px) rotate(0deg); } 100% { transform: translateY(110vh) rotate(360deg); } }
+        /* (Add nth-child confetti variations from existing code) */
+
+        /* --- INVITATION CARD (UPDATED WITH PHOTO VISUAL) --- */
+        .invitation-card-visual {
+            max-width: 450px;
+            width: 92%;
+            margin: 40px 0 20px; /* Space around the card visual */
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            animation: slideUp 0.7s ease-out;
+            position: relative;
+            z-index: 10; /* Make sure card visual is visible */
+        }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* The single image asset for the card visual, containing photo, text, and structure */
+        .invitation-card-visual img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- SEPARATE FUNCTIONAL BLOCKS (Below the card visual) --- */
+        .functional-block {
+            max-width: 450px;
+            width: 92%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 10; /* Elements in this area are separate from card visual but functional */
+        }
+
+        .calendar-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .cal-btn {
+            flex: 1;
+            background: #fff;
+            border: 1px solid #ddd;
+            color: var(--text-main);
+            padding: 10px;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .cal-btn:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+            background: #f0f8ff;
+            transform: scale(1.03);
+        }
+
+        .divider {
+            height: 1px;
+            background: #eee;
+            margin: 25px 0;
+        }
+
+        h3 { margin: 0 0 15px 0; font-size: 1.3em; color: var(--text-main); text-align: center; }
+
+        .form-group { margin-bottom: 18px; text-align: left; }
+        label { display: block; margin-bottom: 8px; font-size: 0.85em; font-weight: 600; color: var(--text-light); }
+        input, select { width: 100%; padding: 14px; border: 2px solid #eee; border-radius: 10px; font-family: 'Poppins', sans-serif; font-size: 0.95em; background: #fafafa; transition: all 0.3s; box-sizing: border-box; }
+        input:focus, select:focus { outline: none; border-color: var(--primary); background: #fff; box-shadow: 0 0 0 4px rgba(255, 126, 103, 0.1); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+        button.submit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 16px;
+            width: 100%;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 6px 15px rgba(255, 126, 103, 0.3);
+            transition: all 0.3s;
+        }
+
+        button.submit-btn:hover { background: #ff6b52; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 126, 103, 0.4); }
+
+        .hidden { display: none !important; }
+        #thankYouMessage { text-align: center; padding: 50px 25px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
+    </style>
+</head>
+<body>
+
+    <!-- DECORATION: FLYING BALLOONS (Existing) -->
+    <div class="balloon-container">
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+    </div>
+
+    <!-- DECORATION: CONFETTI (Existing) -->
+    <div class="confetti-container">
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+    </div>
+
+    <!-- INVITATION CARD VISUAL (SINGLE IMAGE WITH PHOTO & TEXT DETAILS) -->
+    <div class="invitation-card-visual" id="formContainer">
+        <!-- New visual element: a single image asset for the card header and initial details -->
+        <img src="image_1.png" alt="Dhrishay's Birthday Invitation Visual">
+    </div>
+
+    <!-- SEPARATE FUNCTIONAL BLOCKS (Functional after the visual card) -->
+    <div class="functional-block">
+        <!-- Calendar Buttons block -->
+        <div class="calendar-buttons">
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Dhrishay%27s+Birthday+Party!&dates=20260830T213000Z/20260830T233000Z&details=Join+us+to+celebrate+Dhrishay%27s+birthday!+Celebrating+over+the+weekend+before+his+actual+birthday+on+Sept+2nd!&location=Brampton,+ON" target="_blank" class="cal-btn">
+                📅 Google Calendar
+            </a>
+            <button onclick="downloadICS()" class="cal-btn">
+                🍎 Apple / Outlook
+            </button>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- RSVP Form Section -->
+        <h3>RSVP Details</h3>
+        <form id="rsvpForm" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
+            <div class="form-group">
+                <label for="name">Name / Family Name *</label>
+                <input type="text" id="name" name="Guest Name" required placeholder="e.g., The Vadher Family">
+            </div>
+
+            <div class="form-group">
+                <label for="attending">Will you be attending? *</label>
+                <select id="attending" name="Attending Status" onchange="toggleGuestFields()" required>
+                    <option value="" disabled selected>Please select...</option>
+                    <option value="Yes">Yes, wouldn't miss it! 🎉</option>
+                    <option value="No">Sorry, can't make it 😔</option>
+                </select>
+            </div>
+
+            <div id="attendingFields" class="hidden">
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="adults">Adults</label>
+                        <input type="number" id="adults" name="Adult Count" min="1" max="10" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="kids">Kids</label>
+                        <input type="number" id="kids" name="Kids Count" min="0" max="10" value="0">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="diet">Dietary Preferences / Notes</label>
+                    <input type="text" id="diet" name="Dietary Preferences" placeholder="e.g., Vegetarian, Jain, Allergies">
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Send RSVP</button>
+        </form>
+    </div>
+
+    <!-- Thank You Message block -->
+    <div id="thankYouMessage" class="hidden functional-block">
+        <h1 style="color: var(--primary); margin-bottom: 10px;">🎉 Thank You!</h1>
+        <p style="color: var(--text-light); font-size: 1.1em;">Your RSVP has been recorded. We can't wait to see you!</p>
+        <div style="font-size: 5rem; margin-top: 20px;">🎂</div>
+    </div>
+
+    <script>
+        // Reveal headcount and diet fields based on attendance
+        function toggleGuestFields() {
+            const status = document.getElementById('attending').value;
+            const fields = document.getElementById('attendingFields');
+            if (status === 'Yes') {
+                fields.classList.remove('hidden');
+                setTimeout(() => { fields.style.opacity = 1; }, 10);
+            } else {
+                fields.classList.add('hidden');
+            }
+        }
+
+        // Submits form without refreshing the page
+        const form = document.getElementById("rsvpForm");
+        const blocks = document.querySelectorAll('.functional-block'); // RSVP block and Thank You message
+
+        form.addEventListener("submit", async function(event) {
+            event.preventDefault();
+            const data = new FormData(event.target);
+            
+            // Visual feedback on button
+            const btn = document.querySelector('.submit-btn');
+            btn.innerHTML = 'Sending... ✨';
+            btn.style.opacity = '0.7';
+
+            try {
+                const response = await fetch(event.target.action, {
+                    method: form.method,
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    // Hide functional area and show thank you message
+                    document.getElementById("formContainer").classList.add("hidden");
+                    blocks.forEach(block => block.classList.add('hidden')); // Hide the RSVP functional block
+                    document.getElementById("thankYouMessage").classList.remove("hidden");
+                } else {
+                    alert("There was an issue submitting your RSVP. Please check your Formspree link.");
+                    btn.innerHTML = 'Send RSVP';
+                    btn.style.opacity = '1';
+                }
+            } catch (error) {
+                alert("Connection error. Please try again.");
+                btn.innerHTML = 'Send RSVP';
+                btn.style.opacity = '1';
+            }
+        });
+
+        // Function to generate and download an .ics file for Apple/Outlook calendars
+        function downloadICS() {
+            const icsData = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Dhrishay Birthday RSVP Festive//EN
+BEGIN:VEVENT
+DTSTART:20260830T173000
+DTEND:20260830T193000
+SUMMARY:Dhrishay's Birthday Party!
+DESCRIPTION:Join us to celebrate Dhrishay's birthday! Celebrating over the weekend before his actual birthday on Sept 2nd!
+LOCATION:Our Home Brampton ON
+END:VEVENT
+END:VCALENDAR`;
+
+            const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', 'dhrishay_birthday.ics');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
