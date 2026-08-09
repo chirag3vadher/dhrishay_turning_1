@@ -47,7 +47,7 @@
             position: relative;
             z-index: 10;
             border: 3px solid rgba(255, 255, 255, 0.6);
-            overflow: hidden; /* Bounds the dynamic floating elements neatly inside */
+            overflow: hidden; 
         }
 
         /* --- DYNAMIC ORGANIC FLOATING CONTAINER --- */
@@ -61,7 +61,7 @@
             pointer-events: none;
         }
 
-        /* --- BUTTERFLIES (Slow, organic fluttering paths with NO rotation) --- */
+        /* --- BUTTERFLIES --- */
         .butterfly {
             position: absolute;
             font-size: 1.5rem;
@@ -81,7 +81,7 @@
             100% { transform: translate(-10px, -1200px); opacity: 0; }
         }
 
-        /* --- LEAVES (Slow random drift with continuous gentle spin) --- */
+        /* --- LEAVES --- */
         .floating-leaf {
             position: absolute;
             font-size: 1.6rem;
@@ -100,10 +100,8 @@
             100% { transform: translate(12px, -1250px) rotate(360deg); opacity: 0; }
         }
 
-        /* --- SLOWER, RANDOM SPEEDS & SPREAD-OUT DELAYS --- */
         .b1 { left: 15%; animation-duration: 22s; animation-delay: 0s; }
         .b2 { left: 70%; animation-duration: 26s; animation-delay: 7s; }
-
         .l1 { left: 30%; animation-duration: 24s; animation-delay: 3s; }
         .l2 { left: 80%; animation-duration: 28s; animation-delay: 11s; }
 
@@ -117,19 +115,14 @@
             opacity: 0.85;
         }
 
-        /* Header corner animals */
         .pa-tiger { top: 15px; left: 15px; font-size: 2.5rem; transform: rotate(-15deg); }
         .pa-monkey { top: 15px; right: 15px; font-size: 2.5rem; transform: scaleX(-1) rotate(15deg); }
         .pa-zebra { top: 85px; left: 10px; font-size: 2.2rem; transform: rotate(-10deg); }
         .pa-lion { top: 85px; right: 10px; font-size: 2.3rem; transform: scaleX(-1) rotate(10deg); }
-
-        /* Mid-card animals */
         .pa-giraffe { top: 320px; left: 12px; font-size: 3rem; transform: rotate(10deg); }
         .pa-elephant { top: 320px; right: 12px; font-size: 2.8rem; transform: scaleX(-1) rotate(-10deg); }
         .pa-hippo { top: 480px; left: 10px; font-size: 2.4rem; transform: rotate(-5deg); }
         .pa-parrot { top: 480px; right: 10px; font-size: 2.3rem; transform: scaleX(-1) rotate(15deg); }
-
-        /* Lower card animals (inline with RSVP Details header) */
         .pa-crocodile { top: 760px; left: 12px; font-size: 2.2rem; transform: rotate(5deg); }
         .pa-leopard { top: 760px; right: 12px; font-size: 2.4rem; transform: scaleX(-1) rotate(-5deg); }
 
@@ -151,7 +144,7 @@
         /* --- LIGHT BACKGROUND HEADER --- */
         .header-image {
             background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(253,244,227,0.95) 100%);
-            padding: 40px 15px 85px 15px;
+            padding: 40px 15px 95px 15px; /* Added a bit more padding for the polaroid overlap */
             text-align: center;
             border-radius: 20px 20px 0 0;
             position: relative;
@@ -174,26 +167,11 @@
         .bl-10 { top: 140px; right: -5px; transform: rotate(-110deg); font-size: 3rem; }
 
         /* --- CUSTOM ANIMAL NAME LETTERS --- */
-        .animal-name {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 5px;
-            position: relative;
-            z-index: 2; 
-        }
-
+        .animal-name { display: flex; justify-content: center; flex-wrap: wrap; margin-bottom: 5px; position: relative; z-index: 2;  }
         .letter {
-            font-family: 'Lilita One', cursive;
-            font-size: 3.8rem;
-            line-height: 1.1;
-            margin: 0 -2px;
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            -webkit-text-fill-color: transparent;
-            -webkit-text-stroke: 2px #1B3B1B;
-            transform-origin: bottom center;
+            font-family: 'Lilita One', cursive; font-size: 3.8rem; line-height: 1.1; margin: 0 -2px;
+            background-clip: text; -webkit-background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 2px #1B3B1B; transform-origin: bottom center;
         }
 
         .letter:nth-child(odd) { transform: rotate(-5deg); }
@@ -205,85 +183,67 @@
         .print-giraffe { background-image: radial-gradient(circle, #4E342E 55%, transparent 60%), linear-gradient(#FFB300, #FFB300); background-size: 18px 18px, 100% 100%; }
         .print-snake { background-image: repeating-linear-gradient(135deg, #43A047, #43A047 8px, #1B5E20 8px, #1B5E20 16px); }
 
-        .sub-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.3em;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--jungle-dark); 
-            margin: 0;
-            position: relative;
-            z-index: 2;
-        }
+        .sub-title { font-family: 'Poppins', sans-serif; font-size: 1.3em; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--jungle-dark); margin: 0; position: relative; z-index: 2; }
+        .header-image p { font-weight: 600; font-size: 1.05em; margin-top: 10px; color: var(--text-main); position: relative; z-index: 2; }
 
-        .header-image p {
-            font-weight: 600;
-            font-size: 1.05em;
-            margin-top: 10px;
-            color: var(--text-main); 
-            position: relative;
-            z-index: 2;
-        }
-
-        /* --- MODERN ORGANIC PHOTO FRAME --- */
+        /* --- SAFARI EXPLORER POLAROID PHOTO --- */
         .photo-wrapper {
             position: relative;
-            width: 210px;
-            height: 210px;
-            margin: -105px auto 20px auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 220px;
+            margin: -80px auto 25px auto; /* Overlaps the header border */
             z-index: 5;
+            transform: rotate(-4deg);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .photo-wrapper::before {
+        .photo-wrapper:hover {
+            transform: rotate(0deg) scale(1.05);
+            z-index: 30; /* Pops above the leaves on hover */
+        }
+
+        /* The Translucent Tape holding the polaroid */
+        .photo-wrapper::after {
             content: '';
             position: absolute;
-            inset: -4px;
-            background: linear-gradient(45deg, var(--jungle-dark), var(--safari-gold), var(--jungle-light), #fff);
-            background-size: 400% 400%;
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            animation: glowGradient 8s ease infinite, morphShape 8s ease-in-out infinite both alternate;
-            z-index: -1;
-            filter: blur(10px);
-            opacity: 0.9;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%) rotate(2deg);
+            width: 80px;
+            height: 25px;
+            background: rgba(212, 175, 55, 0.65); /* Safari Gold Translucent Washi Tape */
+            border: 1px dashed rgba(255,255,255,0.6);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 10;
         }
 
         .photo-container {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background: white;
-            border: 4px solid white;
-            box-shadow: 0 10px 25px rgba(44, 95, 45, 0.2);
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            animation: morphShape 8s ease-in-out infinite both alternate;
+            background: #ffffff;
+            padding: 12px 12px 45px 12px; /* White polaroid border */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-radius: 4px;
+            position: relative;
+        }
+
+        /* Subtle "WILD ONE" stamp on the bottom of the polaroid */
+        .photo-container::after {
+            content: 'WILD ONE';
+            position: absolute;
+            bottom: 12px;
+            right: 15px;
+            font-family: 'Lilita One', cursive;
+            color: var(--jungle-dark);
+            opacity: 0.15;
+            font-size: 1.3rem;
+            transform: rotate(-3deg);
+            letter-spacing: 1px;
         }
 
         .photo-container img {
             width: 100%;
-            height: 100%;
+            height: 196px; /* Creates a perfect square for the image area */
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .photo-wrapper:hover .photo-container img {
-            transform: scale(1.15) rotate(2deg);
-        }
-
-        @keyframes morphShape {
-            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-            33% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-            66% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
-            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-        }
-
-        @keyframes glowGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            border-radius: 2px;
+            filter: contrast(1.05) saturate(1.05); /* Slight enhancement for the photo */
         }
 
         /* --- FUN FACT EXPLORER NOTE --- */
@@ -348,11 +308,11 @@
         
         <!-- SLOW, SPARSE FLOATING BUTTERFLIES & ROTATING LEAVES -->
         <div class="floating-decor-container">
-            <!-- Butterflies (Slow, fluttering naturally without rotation) -->
+            <!-- Butterflies -->
             <div class="butterfly b1">🦋</div>
             <div class="butterfly b2">🦋</div>
 
-            <!-- Leaves (Slow, random drifting with continuous gentle rotation) -->
+            <!-- Leaves -->
             <div class="floating-leaf l1">🌿</div>
             <div class="floating-leaf l2">🍃</div>
         </div>
@@ -401,7 +361,7 @@
                 <p>Join our safari to celebrate his 1st Birthday</p>
             </div>
 
-            <!-- ORGANIC MORPHING PHOTO -->
+            <!-- SAFARI POLAROID PHOTO -->
             <div class="photo-wrapper">
                 <div class="photo-container">
                     <img src="IMG_5118.PNG" alt="Dhrishay">
