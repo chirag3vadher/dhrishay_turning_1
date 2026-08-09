@@ -516,22 +516,35 @@
             }
         });
         function downloadICS() {
-            const icsData = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Dhrishay Birthday RSVP//EN\nBEGIN:VEVENT\nDTSTART:20260830T173000\nDTEND:20260830T193000\nSUMMARY:Dhrishay's 1st Birthday Safari!\nDESCRIPTION:Join our safari to celebrate Dhrishay's 1st birthday!\nLOCATION:4 Kings Cross Rd\\, Brampton\\, ON L6T 3X8\nBEGIN:VALARM\nACTION:DISPLAY\nDESCRIPTION:Reminder: Dhrishay's 1st Birthday Safari!\nTRIGGER:-PT24H\nEND:VALARM\nEND:VEVENT\nEND:VCALENDAR`;
-            
-            // Check if the user is on an Apple device (iPhone/iPad)
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            // Apple requires exact \r\n (carriage return) formatting and UTC 'Z' times to recognize the file
+            const icsData = "BEGIN:VCALENDAR\r\n" +
+                            "VERSION:2.0\r\n" +
+                            "PRODID:-//Dhrishay Birthday RSVP//EN\r\n" +
+                            "BEGIN:VEVENT\r\n" +
+                            "DTSTART:20260830T213000Z\r\n" + 
+                            "DTEND:20260830T233000Z\r\n" +
+                            "SUMMARY:Dhrishay's 1st Birthday Safari!\r\n" +
+                            "DESCRIPTION:Join our safari to celebrate Dhrishay's 1st birthday!\r\n" +
+                            "LOCATION:4 Kings Cross Rd\\, Brampton\\, ON L6T 3X8\r\n" +
+                            "BEGIN:VALARM\r\n" +
+                            "ACTION:DISPLAY\r\n" +
+                            "DESCRIPTION:Reminder: Dhrishay's 1st Birthday Safari!\r\n" +
+                            "TRIGGER:-PT24H\r\n" +
+                            "END:VALARM\r\n" +
+                            "END:VEVENT\r\n" +
+                            "END:VCALENDAR";
 
-            if (isIOS) {
-                // This forces the Apple Calendar "Add Event" screen to pop up instantly!
-                window.location.href = "data:text/calendar;charset=utf8," + encodeURIComponent(icsData);
-            } else {
-                // Normal download for Desktop and Android
-                const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
-                const link = document.createElement('a');
-                link.href = window.URL.createObjectURL(blob);
-                link.setAttribute('download', 'dhrishay_safari.ics');
-                document.body.appendChild(link); link.click(); document.body.removeChild(link);
-            }
+            const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', 'dhrishay_safari.ics');
+            
+            // Adding target="_blank" helps iOS open the previewer
+            link.setAttribute('target', '_blank'); 
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
     </script>
 </body>
