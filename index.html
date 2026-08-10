@@ -118,9 +118,7 @@
             transition: transform 0.4s ease-out; /* Subtle effect for when animals are first loaded */
         }
 
-        /* Animals Placed to Peek In (Switched Positions & Mirroring Applied) */
-        
-        /* Left Side Animals (Now Monkey group) - Mirrored `scaleX(-1)` added */
+        /* --- LEFT SIDE ANIMALS (Monkey Group) - UNCHANGED --- */
         .pa-monkey { 
             top: -25px; left: -20px; 
             transform: scaleX(-1) rotate(-15deg); 
@@ -146,33 +144,34 @@
             transform: scaleX(-1) rotate(5deg); 
         }
 
-        /* Right Side Animals (Now Tiger group) - Mirrored `scaleX(-1)` already in `scaleSimple` logic, so base mirroring applied here */
+        /* --- RIGHT SIDE ANIMALS (Tiger Group) - MIRRORED --- */
+        /* scaleX(-1) applied to mirror individual alignment with respect to position */
         .pa-tiger { 
             top: -20px; right: -20px; 
-            transform: rotate(15deg); 
+            transform: scaleX(-1) rotate(15deg); 
         }
         .pa-zebra { 
             top: 60px; right: -30px; 
             font-size: 4.5rem; 
-            transform: rotate(10deg); 
+            transform: scaleX(-1) rotate(10deg); 
         }
         .pa-giraffe { 
             top: 290px; right: -35px; 
             font-size: 6rem; /* Giraffes remain tall */
-            transform: rotate(-10deg); 
+            transform: scaleX(-1) rotate(-10deg); 
         }
         .pa-hippo { 
             top: 450px; right: -30px; 
             font-size: 4.8rem; 
-            transform: rotate(5deg); 
+            transform: scaleX(-1) rotate(5deg); 
         }
         .pa-crocodile { 
             top: 730px; right: -25px; 
             font-size: 4.5rem; 
-            transform: rotate(-5deg); 
+            transform: scaleX(-1) rotate(-5deg); 
         }
 
-        /* Float animations apply MIRRORED state to keyframes */
+        /* Float animations handle MIRRORED state in keyframes */
         .pa-tiger { animation: floatSimpleTiger 4s ease-in-out infinite; }
         .pa-monkey { animation: floatSimpleMonkey 3s ease-in-out infinite; }
         .pa-zebra { animation: floatSimpleZebra 5s ease-in-out infinite; }
@@ -184,17 +183,20 @@
         .pa-crocodile { animation: floatSimpleCrocodile 7s ease-in-out infinite; }
         .pa-leopard { animation: floatSimpleLeopard 4s ease-in-out infinite; }
 
-        /* Smoothed Behaviors, MIRRORED transform sequence used (scaleX(-1) first) */
-        @keyframes floatSimpleTiger { 0%, 100% { transform: scaleX(-1) rotate(15deg) translateX(0); } 50% { transform: scaleX(-1) rotate(15deg) translateX(8px); } }
+        /* Smoothed Behaviors, mirrored transform sequence used (scaleX(-1) first) */
+        /* Monkey group (Left side) is naturally facing right, scaleX(-1) makes them look center */
         @keyframes floatSimpleMonkey { 0%, 100% { transform: scaleX(-1) rotate(-15deg); } 50% { transform: scaleX(-1) rotate(-8deg); } }
-        @keyframes floatSimpleZebra { 0%, 100% { transform: scaleX(-1) rotate(10deg) translateY(0); } 50% { transform: scaleX(-1) rotate(20deg) translateY(6px); } }
         @keyframes floatSimpleLion { 0%, 100% { transform: scaleX(-1) rotate(-10deg) scale(1); } 50% { transform: scaleX(-1) rotate(-10deg) scale(1.06); } }
-        @keyframes floatSimpleGiraffe { 0%, 100% { transform: scaleX(-1) rotate(-10deg); } 50% { transform: scaleX(-1) rotate(-4deg); } }
         @keyframes floatSimpleElephant { 0%, 100% { transform: scaleX(-1) rotate(10deg) translateY(0); } 50% { transform: scaleX(-1) rotate(14deg) translateY(-4px); } }
-        @keyframes floatSimpleHippo { 0%, 100% { transform: scaleX(-1) rotate(5deg) translateY(0); } 50% { transform: scaleX(-1) rotate(5deg) translateY(8px); } }
         @keyframes floatSimpleParrot { 0%, 100% { transform: scaleX(-1) rotate(-15deg) translateY(0); } 30% { transform: scaleX(-1) rotate(-15deg) translateY(-5px); } 60% { transform: scaleX(-1) rotate(-8deg) translateY(0); } }
-        @keyframes floatSimpleCrocodile { 0%, 100% { transform: scaleX(-1) rotate(-5deg) translateX(0); } 50% { transform: scaleX(-1) rotate(-5deg) translateX(12px); } }
         @keyframes floatSimpleLeopard { 0%, 100% { transform: scaleX(-1) rotate(5deg) scaleY(1); } 50% { transform: scaleX(-1) rotate(5deg) scaleY(0.9) translateY(4px); } }
+
+        /* Tiger group (Right side) naturally faces left. scaleX(-1) mirrors them to look right, inward to center */
+        @keyframes floatSimpleTiger { 0%, 100% { transform: scaleX(-1) rotate(15deg) translateX(0); } 50% { transform: scaleX(-1) rotate(15deg) translateX(8px); } }
+        @keyframes floatSimpleZebra { 0%, 100% { transform: scaleX(-1) rotate(10deg) translateY(0); } 50% { transform: scaleX(-1) rotate(20deg) translateY(6px); } }
+        @keyframes floatSimpleGiraffe { 0%, 100% { transform: scaleX(-1) rotate(-10deg); } 50% { transform: scaleX(-1) rotate(-4deg); } }
+        @keyframes floatSimpleHippo { 0%, 100% { transform: scaleX(-1) rotate(5deg) translateY(0); } 50% { transform: scaleX(-1) rotate(5deg) translateY(8px); } }
+        @keyframes floatSimpleCrocodile { 0%, 100% { transform: scaleX(-1) rotate(-5deg) translateX(0); } 50% { transform: scaleX(-1) rotate(-5deg) translateX(12px); } }
 
         /* --- CORNER JUNGLE LEAVES BORDER --- */
         .corner-leaf {
@@ -248,8 +250,8 @@
         .letter:nth-child(even) { transform: rotate(4deg); }
 
         .print-zebra { background-image: repeating-linear-gradient(-45deg, #FFFFFF, #FFFFFF 10px, #111111 10px, #111111 18px); }
-        .print-tiger { background-image: repeating-linear-gradient(45deg, #F57C00, #F57C00 12px, --212121 12px, --212121 20px); transform: rotate(-3deg) !important; margin-right: 5px; }
-        .print-cheetah { background-image: radial-gradient(circle, --212121 40%, transparent 45%), linear-gradient(#FFCA28, #FFCA28); background-size: 14px 14px, 100% 100%; }
+        .print-tiger { background-image: repeating-linear-gradient(45deg, #F57C00, #F57C00 12px, #212121 12px, #212121 20px); transform: rotate(-3deg) !important; margin-right: 5px; }
+        .print-cheetah { background-image: radial-gradient(circle, #212121 40%, transparent 45%), linear-gradient(#FFCA28, #FFCA28); background-size: 14px 14px, 100% 100%; }
         .print-giraffe { background-image: radial-gradient(circle, #4E342E 55%, transparent 60%), linear-gradient(#FFB300, #FFB300); background-size: 18px 18px, 100% 100%; }
         .print-snake { background-image: repeating-linear-gradient(135deg, #43A047, #43A047 8px, #1B5E20 8px, #1B5E20 16px); }
 
@@ -384,15 +386,15 @@
             <div class="floating-leaf l2">🍃</div>
         </div>
 
-        <!-- DYNAMIC MEDIUM JUNGLE ANIMALS EMBEDDED ON THE PANEL EDGES (z-index: 15) - Positions Switched & Mirrored -->
-        <!-- Left Side Animals (Now Monkey group) - Mirrored `scaleX(-1)` used to flip current state -->
+        <!-- DYNAMIC MEDIUM JUNGLE ANIMALS EMBEDDED ON THE PANEL EDGES (z-index: 15) - Positions Switched -->
+        <!-- Left Side Animals (Now Monkey group) - naturally faces left (original was flipped), scaleX(-1) included in keyframes/pos makes them face inward -->
         <div class="panel-animal pa-monkey">🐒</div>
         <div class="panel-animal pa-lion">🦁</div>
         <div class="panel-animal pa-elephant">🐘</div>
         <div class="panel-animal pa-parrot">🦜</div>
         <div class="panel-animal pa-leopard">🐆</div>
         
-        <!-- Right Side Animals (Now Tiger group) - Base state used as keyframes handle flipping -->
+        <!-- Right Side Animals (Now Tiger group) - original naturally faces left, mirrored now faces right inward to center -->
         <div class="panel-animal pa-tiger">🐅</div>
         <div class="panel-animal pa-zebra">🦓</div>
         <div class="panel-animal pa-giraffe">🦒</div>
