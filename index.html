@@ -28,9 +28,99 @@
             justify-content: center;
             align-items: center;
             color: var(--text-main);
-            overflow-x: hidden;
+            /* Important: Keep overflow-x hidden to prevent giant animals from creating horizontal scrollbars */
+            overflow-x: hidden; 
             padding: 40px 0;
+            position: relative; /* Base for giant animal positioning */
         }
+
+        /* --- GIANT VIEWERPORT JUNGLE ANIMALS --- */
+        .panel-animal {
+            position: fixed; /* Anchored to screen, moves with scroll */
+            z-index: 1; /* Sits behind the card */
+            pointer-events: none; /* Guest can click through them */
+            filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.1));
+            opacity: 0.7; /* Soften them slightly so they remain background decor */
+            transition: opacity 0.3s;
+        }
+
+        /* If screen is small, make them more transparent so they don't visually clutter behind text */
+        @media (max-width: 768px) {
+            .panel-animal { opacity: 0.4; }
+        }
+
+        /* --- Individual Giant Animal Styling & Placements --- */
+        
+        /* Class to define common massive size, individual scale tweaks applied below */
+        .giant-size { font-size: 14rem; } 
+
+        .pa-tiger { 
+            top: 50px; left: -50px; 
+            font-size: 10rem; 
+            animation: prowlTiger 6s ease-in-out infinite; 
+        }
+        .pa-monkey { 
+            top: -20px; right: -40px; 
+            font-size: 9rem; 
+            transform-origin: top center; 
+            animation: swingMonkeyAnim 4s ease-in-out infinite; 
+        }
+        .pa-zebra { 
+            top: 25vh; left: -80px; 
+            font-size: 11rem; 
+            animation: grazeZebra 5s ease-in-out infinite; 
+        }
+        .pa-lion { 
+            top: 25vh; right: -70px; 
+            font-size: 12rem; 
+            animation: puffLion 5s ease-in-out infinite; 
+        }
+        .pa-giraffe { 
+            top: 50vh; left: -90px; 
+            font-size: 16rem; /* Giraffes are tall! */
+            transform-origin: bottom center; 
+            animation: swayGiraffeAnim 7s ease-in-out infinite; 
+        }
+        .pa-elephant { 
+            top: 50vh; right: -100px; 
+            font-size: 15rem; /* Elephants are big! */
+            animation: rockElephant 6s ease-in-out infinite; 
+        }
+        .pa-hippo { 
+            top: 75vh; left: -60px; 
+            font-size: 10rem; 
+            animation: bobHippo 4s ease-in-out infinite; 
+        }
+        .pa-parrot { 
+            top: 70vh; right: 20px; /* Peek from top right */
+            font-size: 7rem; 
+            transform-origin: bottom center; 
+            animation: jitterParrot 3s ease-in-out infinite; 
+        }
+        .pa-crocodile { 
+            bottom: -30px; left: 100px; /* Creep from bottom left */
+            font-size: 9rem; 
+            animation: creepCrocodile 8s ease-in-out infinite; 
+        }
+        .pa-leopard { 
+            bottom: 20px; right: -60px; /* Peek from bottom right */
+            font-size: 11rem; 
+            transform-origin: bottom center; 
+            animation: crouchLeopard 4s ease-in-out infinite; 
+        }
+
+        /* --- Animal Behaviors (Smoothed for giant size) --- */
+        @keyframes prowlTiger { 0%, 100% { transform: rotate(-15deg) translateX(0); } 50% { transform: rotate(-10deg) translateX(15px); } }
+        @keyframes swingMonkeyAnim { 0%, 100% { transform: scaleX(-1) rotate(15deg); } 50% { transform: scaleX(-1) rotate(-10deg); } }
+        @keyframes grazeZebra { 0%, 100% { transform: rotate(-10deg) translateY(0); } 50% { transform: rotate(-15deg) translateY(8px); } }
+        @keyframes puffLion { 0%, 100% { transform: scaleX(-1) rotate(10deg) scale(1); } 50% { transform: scaleX(-1) rotate(10deg) scale(1.05); } }
+        @keyframes swayGiraffeAnim { 0%, 100% { transform: rotate(10deg); } 50% { transform: rotate(2deg); } }
+        @keyframes rockElephant { 0%, 100% { transform: scaleX(-1) rotate(-10deg) translateY(0); } 50% { transform: scaleX(-1) rotate(-13deg) translateY(-5px); } }
+        @keyframes bobHippo { 0%, 100% { transform: rotate(-5deg) translateY(0); } 50% { transform: rotate(-5deg) translateY(10px); } }
+        @keyframes jitterParrot { 0%, 100% { transform: scaleX(-1) rotate(15deg) translateY(0); } 30% { transform: scaleX(-1) rotate(15deg) translateY(-6px); } 60% { transform: scaleX(-1) rotate(5deg) translateY(0); } }
+        @keyframes creepCrocodile { 0%, 100% { transform: rotate(5deg) translateX(0); } 50% { transform: rotate(5deg) translateX(20px); } }
+        @keyframes crouchLeopard { 0%, 100% { transform: scaleX(-1) rotate(-5deg) scaleY(1); } 50% { transform: scaleX(-1) rotate(-5deg) scaleY(0.9) translateY(5px); } }
+
 
         /* --- INVITATION CARD (FROSTED GLASS EFFECT) --- */
         .invitation-card {
@@ -45,7 +135,7 @@
             margin: 40px 0;
             animation: slideUp 0.7s ease-out;
             position: relative;
-            z-index: 10;
+            z-index: 10; /* Card is above animals */
             border: 3px solid rgba(255, 255, 255, 0.6);
             overflow: hidden; 
         }
@@ -57,7 +147,7 @@
             height: 100%;
             top: 0;
             left: 0;
-            z-index: 20; 
+            z-index: 20; /* Floating leaves/butterflies are *inside* card, but above card content */
             pointer-events: none;
         }
 
@@ -104,40 +194,6 @@
         .b2 { left: 70%; animation-duration: 26s; animation-delay: 7s; }
         .l1 { left: 30%; animation-duration: 24s; animation-delay: 3s; }
         .l2 { left: 80%; animation-duration: 28s; animation-delay: 11s; }
-
-        /* --- STATIC JUNGLE ANIMALS EMBEDDED ON THE PANEL EDGES --- */
-        .panel-animal {
-            position: absolute;
-            font-size: 2.8rem;
-            z-index: 15;
-            pointer-events: none;
-            filter: drop-shadow(2px 3px 5px rgba(0,0,0,0.15));
-            opacity: 0.85;
-        }
-
-        /* All Animals Placed on Edges */
-        .pa-tiger { top: 15px; left: 15px; font-size: 2.5rem; animation: prowlTiger 4s ease-in-out infinite; }
-        .pa-monkey { top: 15px; right: 15px; font-size: 2.5rem; transform-origin: top center; animation: swingMonkeyAnim 3s ease-in-out infinite; }
-        .pa-zebra { top: 85px; left: 10px; font-size: 2.2rem; animation: grazeZebra 5s ease-in-out infinite; }
-        .pa-lion { top: 85px; right: 10px; font-size: 2.3rem; animation: puffLion 4.5s ease-in-out infinite; }
-        .pa-giraffe { top: 320px; left: 12px; font-size: 3rem; transform-origin: bottom center; animation: swayGiraffeAnim 6s ease-in-out infinite; }
-        .pa-elephant { top: 320px; right: 12px; font-size: 2.8rem; animation: rockElephant 5s ease-in-out infinite; }
-        .pa-hippo { top: 480px; left: 10px; font-size: 2.4rem; animation: bobHippo 4s ease-in-out infinite; }
-        .pa-parrot { top: 480px; right: 10px; font-size: 2.3rem; transform-origin: bottom center; animation: jitterParrot 3s ease-in-out infinite; }
-        .pa-crocodile { top: 760px; left: 12px; font-size: 2.2rem; animation: creepCrocodile 7s ease-in-out infinite; }
-        .pa-leopard { top: 760px; right: 12px; font-size: 2.4rem; transform-origin: bottom center; animation: crouchLeopard 4s ease-in-out infinite; }
-
-        /* Animal Unique Behaviors */
-        @keyframes prowlTiger { 0%, 100% { transform: rotate(-15deg) translateX(0); } 50% { transform: rotate(-15deg) translateX(6px); } }
-        @keyframes swingMonkeyAnim { 0%, 100% { transform: scaleX(-1) rotate(15deg); } 50% { transform: scaleX(-1) rotate(-5deg); } }
-        @keyframes grazeZebra { 0%, 100% { transform: rotate(-10deg) translateY(0); } 50% { transform: rotate(-20deg) translateY(4px); } }
-        @keyframes puffLion { 0%, 100% { transform: scaleX(-1) rotate(10deg) scale(1); } 50% { transform: scaleX(-1) rotate(10deg) scale(1.08); } }
-        @keyframes swayGiraffeAnim { 0%, 100% { transform: rotate(10deg); } 50% { transform: rotate(2deg); } }
-        @keyframes rockElephant { 0%, 100% { transform: scaleX(-1) rotate(-10deg) translateY(0); } 50% { transform: scaleX(-1) rotate(-15deg) translateY(-3px); } }
-        @keyframes bobHippo { 0%, 100% { transform: rotate(-5deg) translateY(0); } 50% { transform: rotate(-5deg) translateY(5px); } }
-        @keyframes jitterParrot { 0%, 100% { transform: scaleX(-1) rotate(15deg) translateY(0); } 30% { transform: scaleX(-1) rotate(15deg) translateY(-4px); } 60% { transform: scaleX(-1) rotate(5deg) translateY(0); } }
-        @keyframes creepCrocodile { 0%, 100% { transform: rotate(5deg) translateX(0); } 50% { transform: rotate(5deg) translateX(8px); } }
-        @keyframes crouchLeopard { 0%, 100% { transform: scaleX(-1) rotate(-5deg) scaleY(1); } 50% { transform: scaleX(-1) rotate(-5deg) scaleY(0.85) translateY(3px); } }
 
         /* --- CORNER JUNGLE LEAVES BORDER --- */
         .corner-leaf {
@@ -316,9 +372,21 @@
 </head>
 <body>
 
+    <!-- GIANT BACKGROUND ANIMALS (Outside the card, seated behind it via z-index) -->
+    <div class="panel-animal pa-tiger">🐅</div>
+    <div class="panel-animal pa-monkey">🐒</div>
+    <div class="panel-animal pa-zebra">🦓</div>
+    <div class="panel-animal pa-lion">🦁</div>
+    <div class="panel-animal pa-giraffe">🦒</div>
+    <div class="panel-animal pa-elephant">🐘</div>
+    <div class="panel-animal pa-hippo">🦛</div>
+    <div class="panel-animal pa-parrot">🦜</div>
+    <div class="panel-animal pa-crocodile">🐊</div>
+    <div class="panel-animal pa-leopard">🐆</div>
+
     <div class="invitation-card">
         
-        <!-- SLOW, SPARSE FLOATING BUTTERFLIES & ROTATING LEAVES -->
+        <!-- SLOW, SPARSE FLOATING BUTTERFLIES & ROTATING LEAVES (Inside card boundary) -->
         <div class="floating-decor-container">
             <div class="butterfly b1">🦋</div>
             <div class="butterfly b2">🦋</div>
@@ -326,19 +394,7 @@
             <div class="floating-leaf l2">🍃</div>
         </div>
 
-        <!-- DYNAMIC JUNGLE ANIMALS EMBEDDED ON THE PANEL EDGES -->
-        <div class="panel-animal pa-tiger">🐅</div>
-        <div class="panel-animal pa-monkey">🐒</div>
-        <div class="panel-animal pa-zebra">🦓</div>
-        <div class="panel-animal pa-lion">🦁</div>
-        <div class="panel-animal pa-giraffe">🦒</div>
-        <div class="panel-animal pa-elephant">🐘</div>
-        <div class="panel-animal pa-hippo">🦛</div>
-        <div class="panel-animal pa-parrot">🦜</div>
-        <div class="panel-animal pa-crocodile">🐊</div>
-        <div class="panel-animal pa-leopard">🐆</div>
-
-        <!-- CORNER LEAVES -->
+        <!-- CORNER LEAVES (Inside card boundary) -->
         <div class="corner-leaf cl-tl">🌿</div>
         <div class="corner-leaf cl-tr">🍃</div>
         <div class="corner-leaf cl-bl">🍃</div>
