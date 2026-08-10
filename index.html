@@ -28,113 +28,9 @@
             justify-content: center;
             align-items: center;
             color: var(--text-main);
-            /* Important: Keep overflow-x hidden to prevent giant animals from creating horizontal scrollbars */
-            overflow-x: hidden; 
+            overflow-x: hidden;
             padding: 40px 0;
-            position: relative; /* Base for giant animal positioning */
         }
-
-        /* --- GIANT VIEWERPORT JUNGLE ANIMALS (PEEKING EFFECT) --- */
-        .panel-animal {
-            position: fixed; /* Anchored to screen, moves with scroll */
-            z-index: 1; /* Sits behind the card for peek-a-boo depth */
-            pointer-events: none; /* Guest can click through them */
-            filter: drop-shadow(10px 10px 20px rgba(0,0,0,0.2));
-            opacity: 1; /* Solid, opaque visibility for a realistic feel */
-            
-            /* ANIMATION PRESETS: Defined individually below to control direction */
-            animation-duration: 20s; /* Slow, synchronized natural loop */
-            animation-iteration-count: infinite;
-            animation-timing-function: ease-in-out;
-            animation-delay: 2s; /* Give main card a moment to show first */
-        }
-
-        /* If screen is small, reduce size slightly and add a small blur to avoid visual overload */
-        @media (max-width: 768px) {
-            .panel-animal { font-size: 8rem; filter: blur(2px) drop-shadow(5px 5px 10px rgba(0,0,0,0.1)); }
-        }
-
-        /* --- LEFT SIDE: Facing Right (Natural), Peek Right & Return --- */
-        .pa-tiger { 
-            top: 50px; left: -140px; 
-            font-size: 10rem; 
-            animation-name: peekRightTiger;
-        }
-        .pa-zebra { 
-            top: 25vh; left: -160px; 
-            font-size: 11rem; 
-            animation-name: peekRightZebra;
-        }
-        .pa-giraffe { 
-            top: 50vh; left: -190px; 
-            font-size: 16rem; /* Giraffes are tall! */
-            transform-origin: bottom right; /* Rotates from behind center edge */
-            animation-name: peekRightGiraffe;
-        }
-        .pa-hippo { 
-            top: 75vh; left: -150px; 
-            font-size: 10rem; 
-            animation-name: peekRightHippo;
-        }
-        .pa-crocodile { 
-            bottom: -50px; left: 100px; /* Creep from bottom left up/right */
-            font-size: 9rem; 
-            animation-name: peekCreepCrocodile;
-        }
-
-        /* --- RIGHT SIDE: Facing Left (Flipped), Peek Left & Return --- */
-        /* Use scaleX(-1) to make them look left, keyframes peek them Left */
-        .pa-monkey { 
-            top: -20px; right: -120px; 
-            font-size: 9rem; 
-            transform: scaleX(-1); /* Face Card */
-            transform-origin: top center; 
-            animation-name: peekLeftMonkey; 
-        }
-        .pa-lion { 
-            top: 25vh; right: -130px; 
-            font-size: 12rem; 
-            transform: scaleX(-1); /* Face Card */
-            animation-name: peekLeftLion; 
-        }
-        .pa-elephant { 
-            top: 50vh; right: -180px; 
-            font-size: 15rem; /* Elephants are big! */
-            transform: scaleX(-1); /* Face Card */
-            animation-name: peekLeftElephant; 
-        }
-        .pa-parrot { 
-            top: 70vh; right: 20px; /* Peek from top right outward */
-            font-size: 7rem; 
-            transform: scaleX(-1); /* Face Card */
-            transform-origin: bottom center; 
-            animation-name: peekLeftParrot; 
-        }
-        .pa-leopard { 
-            bottom: 20px; right: -140px; /* Peek from bottom right inward */
-            font-size: 11rem; 
-            transform: scaleX(-1); /* Face Card */
-            transform-origin: bottom center; 
-            animation-name: peekLeftLeopard; 
-        }
-
-        /* --- Intersection Animations: Peek In, Stay Opaque, Peek Out --- */
-        /* Loop Structure: 0-15% In, 15-40% Opaque Hold, 40-55% Out, 55-100% Wait Hidden */
-
-        /* Left Side: Peek Right and back */
-        @keyframes peekRightTiger { 0% { left: -140px; } 15% { left: 10px; } 40% { left: 10px; } 55% { left: -140px; } 100% { left: -140px; } }
-        @keyframes peekRightZebra { 0% { left: -160px; } 15% { left: -20px; } 40% { left: -20px; } 55% { left: -160px; } 100% { left: -160px; } }
-        @keyframes peekRightGiraffe { 0% { transform: rotate(10deg); left: -190px; } 15% { transform: rotate(0deg); left: -30px; } 40% { transform: rotate(0deg); left: -30px; } 55% { transform: rotate(10deg); left: -190px; } 100% { transform: rotate(10deg); left: -190px; } }
-        @keyframes peekRightHippo { 0% { left: -150px; } 15% { left: -10px; } 40% { left: -10px; } 55% { left: -150px; } 100% { left: -150px; } }
-        @keyframes peekCreepCrocodile { 0% { bottom: -150px; left: 100px; } 15% { bottom: -20px; left: 180px; } 40% { bottom: -20px; left: 180px; } 55% { bottom: -150px; left: 100px; } 100% { bottom: -150px; left: 100px; } }
-
-        /* Right Side: Peek Left and back */
-        @keyframes peekLeftMonkey { 0% { transform: scaleX(-1) rotate(15deg); right: -120px; } 15% { transform: scaleX(-1) rotate(0deg); right: -10px; } 40% { transform: scaleX(-1) rotate(0deg); right: -10px; } 55% { transform: scaleX(-1) rotate(15deg); right: -120px; } 100% { transform: scaleX(-1) rotate(15deg); right: -120px; } }
-        @keyframes peekLeftLion { 0% { transform: scaleX(-1) rotate(10deg); right: -130px; } 15% { transform: scaleX(-1) rotate(0deg); right: -20px; } 40% { transform: scaleX(-1) rotate(0deg); right: -20px; } 55% { transform: scaleX(-1) rotate(10deg); right: -130px; } 100% { transform: scaleX(-1) rotate(10deg); right: -130px; } }
-        @keyframes peekLeftElephant { 0% { transform: scaleX(-1) rotate(-10deg); right: -180px; } 15% { transform: scaleX(-1) rotate(0deg); right: -30px; } 40% { transform: scaleX(-1) rotate(0deg); right: -30px; } 55% { transform: scaleX(-1) rotate(-10deg); right: -180px; } 100% { transform: scaleX(-1) rotate(-10deg); right: -180px; } }
-        @keyframes peekLeftParrot { 0% { transform: scaleX(-1) rotate(15deg); right: -100px; } 15% { transform: scaleX(-1) rotate(5deg); right: 10px; } 40% { transform: scaleX(-1) rotate(5deg); right: 10px; } 55% { transform: scaleX(-1) rotate(15deg); right: -100px; } 100% { transform: scaleX(-1) rotate(15deg); right: -100px; } }
-        @keyframes peekLeftLeopard { 0% { transform: scaleX(-1) rotate(-5deg); bottom: 20px; right: -140px; } 15% { transform: scaleX(-1) rotate(0deg); bottom: 20px; right: -10px; } 40% { transform: scaleX(-1) rotate(0deg); bottom: 20px; right: -10px; } 55% { transform: scaleX(-1) rotate(-5deg); bottom: 20px; right: -140px; } 100% { transform: scaleX(-1) rotate(-5deg); bottom: 20px; right: -140px; } }
-
 
         /* --- INVITATION CARD (FROSTED GLASS EFFECT) --- */
         .invitation-card {
@@ -149,9 +45,10 @@
             margin: 40px 0;
             animation: slideUp 0.7s ease-out;
             position: relative;
-            z-index: 10; /* Card is above background animals */
+            z-index: 10;
             border: 3px solid rgba(255, 255, 255, 0.6);
-            overflow: hidden; 
+            /* Important: Keep overflow visible so the medium-sized animals can peek *inside* the card from the edges */
+            overflow: visible; 
         }
 
         /* --- DYNAMIC ORGANIC FLOATING CONTAINER --- */
@@ -161,7 +58,7 @@
             height: 100%;
             top: 0;
             left: 0;
-            z-index: 20; /* Floating leaves/butterflies are *inside* card, but above card content */
+            z-index: 20; 
             pointer-events: none;
         }
 
@@ -208,6 +105,98 @@
         .b2 { left: 70%; animation-duration: 26s; animation-delay: 7s; }
         .l1 { left: 30%; animation-duration: 24s; animation-delay: 3s; }
         .l2 { left: 80%; animation-duration: 28s; animation-delay: 11s; }
+
+        /* --- MEDIUM JUNGLE ANIMALS PEAKING INTO THE CARD --- */
+        .panel-animal {
+            position: absolute;
+            /* Medium Sizing (Much larger than Image 1, significantly smaller than Image 2) */
+            font-size: 5rem;
+            z-index: 15; /* Sits below butterflies/corner leaves, but above content panel for peek feel */
+            pointer-events: none;
+            filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.25));
+            opacity: 1; /* Solid and real visibility, returned from previous step */
+            transition: transform 0.4s ease-out; /* Subtle effect for when animals are first loaded */
+        }
+
+        /* Animals Placed to Peek In (Respective to Card Boundary) */
+        
+        /* Top Edge Animals (Peeking from header) */
+        .pa-tiger { 
+            top: -20px; left: -20px; 
+            transform: rotate(-15deg); 
+        }
+        .pa-monkey { 
+            top: -25px; right: -20px; 
+            transform: scaleX(-1) rotate(15deg); 
+        }
+        .pa-zebra { 
+            top: 60px; left: -30px; 
+            font-size: 4.5rem; 
+            transform: rotate(-10deg); 
+        }
+        .pa-lion { 
+            top: 60px; right: -30px; 
+            font-size: 4.8rem; 
+            transform: scaleX(-1) rotate(10deg); 
+        }
+
+        /* Mid-card Animals (Peeking into photo/fun fact) */
+        .pa-giraffe { 
+            top: 290px; left: -35px; 
+            font-size: 6rem; /* Giraffes remain tall */
+            transform: rotate(10deg); 
+        }
+        .pa-elephant { 
+            top: 290px; right: -35px; 
+            font-size: 5.5rem; /* Elephants remain big */
+            transform: scaleX(-1) rotate(-10deg); 
+        }
+        .pa-hippo { 
+            top: 450px; left: -30px; 
+            font-size: 4.8rem; 
+            transform: rotate(-5deg); 
+        }
+        .pa-parrot { 
+            top: 450px; right: -30px; 
+            font-size: 4.5rem; 
+            transform: scaleX(-1) rotate(15deg); 
+        }
+
+        /* Lower Card Animals (Peeking into RSVP) */
+        .pa-crocodile { 
+            top: 730px; left: -25px; 
+            font-size: 4.5rem; 
+            transform: rotate(5deg); 
+        }
+        .pa-leopard { 
+            top: 730px; right: -25px; 
+            font-size: 4.8rem; 
+            transform: scaleX(-1) rotate(-5deg); 
+        }
+
+        /* Simple float animations return to make them feel alive without chaotic peeking */
+        .pa-tiger { animation: floatSimpleTiger 4s ease-in-out infinite; }
+        .pa-monkey { animation: floatSimpleMonkey 3s ease-in-out infinite; }
+        .pa-zebra { animation: floatSimpleZebra 5s ease-in-out infinite; }
+        .pa-lion { animation: floatSimpleLion 4.5s ease-in-out infinite; }
+        .pa-giraffe { animation: floatSimpleGiraffe 6s ease-in-out infinite; }
+        .pa-elephant { animation: floatSimpleElephant 5s ease-in-out infinite; }
+        .pa-hippo { animation: floatSimpleHippo 4s ease-in-out infinite; }
+        .pa-parrot { animation: floatSimpleParrot 3s ease-in-out infinite; }
+        .pa-crocodile { animation: floatSimpleCrocodile 7s ease-in-out infinite; }
+        .pa-leopard { animation: floatSimpleLeopard 4s ease-in-out infinite; }
+
+        /* Smoothed Behaviors from previous step, scaled for medium size */
+        @keyframes floatSimpleTiger { 0%, 100% { transform: rotate(-15deg) translateX(0); } 50% { transform: rotate(-15deg) translateX(8px); } }
+        @keyframes floatSimpleMonkey { 0%, 100% { transform: scaleX(-1) rotate(15deg); } 50% { transform: scaleX(-1) rotate(-8deg); } }
+        @keyframes floatSimpleZebra { 0%, 100% { transform: rotate(-10deg) translateY(0); } 50% { transform: rotate(-20deg) translateY(6px); } }
+        @keyframes floatSimpleLion { 0%, 100% { transform: scaleX(-1) rotate(10deg) scale(1); } 50% { transform: scaleX(-1) rotate(10deg) scale(1.06); } }
+        @keyframes floatSimpleGiraffe { 0%, 100% { transform: rotate(10deg); } 50% { transform: rotate(4deg); } }
+        @keyframes floatSimpleElephant { 0%, 100% { transform: scaleX(-1) rotate(-10deg) translateY(0); } 50% { transform: scaleX(-1) rotate(-14deg) translateY(-4px); } }
+        @keyframes floatSimpleHippo { 0%, 100% { transform: rotate(-5deg) translateY(0); } 50% { transform: rotate(-5deg) translateY(8px); } }
+        @keyframes floatSimpleParrot { 0%, 100% { transform: scaleX(-1) rotate(15deg) translateY(0); } 30% { transform: scaleX(-1) rotate(15deg) translateY(-5px); } 60% { transform: scaleX(-1) rotate(8deg) translateY(0); } }
+        @keyframes floatSimpleCrocodile { 0%, 100% { transform: rotate(5deg) translateX(0); } 50% { transform: rotate(5deg) translateX(12px); } }
+        @keyframes floatSimpleLeopard { 0%, 100% { transform: scaleX(-1) rotate(-5deg) scaleY(1); } 50% { transform: scaleX(-1) rotate(-5deg) scaleY(0.9) translateY(4px); } }
 
         /* --- CORNER JUNGLE LEAVES BORDER --- */
         .corner-leaf {
@@ -337,6 +326,7 @@
             margin: 0 25px 25px 25px;
             text-align: center;
             position: relative;
+            z-index: 10; /* Keep it below elephants peeking in z-index: 15 */
             animation: gentleBounce 3s infinite ease-in-out;
         }
 
@@ -353,9 +343,9 @@
         @keyframes gentleBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
 
         /* --- CONTENT & FORMS --- */
-        .content-section { padding: 0 30px 35px 30px; }
+        .content-section { padding: 0 30px 35px 30px; position: relative; z-index: 10; }
         
-        .event-details { background: rgba(255,255,255,0.7); border: 1px solid #EAEAEA; border-radius: 16px; padding: 20px; margin-bottom: 25px; }
+        .event-details { background: rgba(255,255,255,0.7); border: 1px solid #EAEAEA; border-radius: 166px; padding: 20px; margin-bottom: 25px; border-radius: 16px; }
         .detail-row { display: flex; align-items: center; margin-bottom: 12px; font-size: 0.95em; }
         .detail-icon { font-size: 1.3em; margin-right: 15px; width: 24px; text-align: center; }
         
@@ -386,21 +376,6 @@
 </head>
 <body>
 
-    <!-- GIANT BACKGROUND ANIMALS (Facing Card, Opaque, Intermittent Peek-a-boo z-index: 1) -->
-    <!-- Left Side (Natural Facing Right) -->
-    <div class="panel-animal pa-tiger">🐅</div>
-    <div class="panel-animal pa-zebra">🦓</div>
-    <div class="panel-animal pa-giraffe">🦒</div>
-    <div class="panel-animal pa-hippo">🦛</div>
-    <div class="panel-animal pa-crocodile">🐊</div>
-
-    <!-- Right Side (Flipped to Face Left) -->
-    <div class="panel-animal pa-monkey">🐒</div>
-    <div class="panel-animal pa-lion">🦁</div>
-    <div class="panel-animal pa-elephant">🐘</div>
-    <div class="panel-animal pa-parrot">🦜</div>
-    <div class="panel-animal pa-leopard">🐆</div>
-
     <div class="invitation-card">
         
         <!-- SLOW, SPARSE FLOATING BUTTERFLIES & ROTATING LEAVES (Inside card boundary z-index: 20) -->
@@ -410,6 +385,18 @@
             <div class="floating-leaf l1">🌿</div>
             <div class="floating-leaf l2">🍃</div>
         </div>
+
+        <!-- DYNAMIC MEDIUM JUNGLE ANIMALS EMBEDDED ON THE PANEL EDGES (z-index: 15) -->
+        <div class="panel-animal pa-tiger">🐅</div>
+        <div class="panel-animal pa-monkey">🐒</div>
+        <div class="panel-animal pa-zebra">🦓</div>
+        <div class="panel-animal pa-lion">🦁</div>
+        <div class="panel-animal pa-giraffe">🦒</div>
+        <div class="panel-animal pa-elephant">🐘</div>
+        <div class="panel-animal pa-hippo">🦛</div>
+        <div class="panel-animal pa-parrot">🦜</div>
+        <div class="panel-animal pa-crocodile">🐊</div>
+        <div class="panel-animal pa-leopard">🐆</div>
 
         <!-- CORNER LEAVES (Inside card boundary z-index: 25) -->
         <div class="corner-leaf cl-tl">🌿</div>
