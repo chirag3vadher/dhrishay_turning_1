@@ -114,11 +114,13 @@
             z-index: 15; /* Sits below butterflies/corner leaves, but above content panel for peek feel */
             pointer-events: none;
             filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.25));
-            opacity: 1; /* Solid and real visibility */
+            opacity: 1; /* Solid and real visibility, returned from previous step */
             transition: transform 0.4s ease-out; /* Subtle effect for when animals are first loaded */
         }
 
-        /* --- LEFT SIDE ANIMALS (Monkey Group) - UNCHANGED --- */
+        /* Animals Placed to Peek In (Respective to Card Boundary) - Switched Positions */
+        
+        /* Left Side Animals (Now Monkey group) - UNCHANGED (looking center) */
         .pa-monkey { 
             top: -25px; left: -20px; 
             transform: scaleX(-1) rotate(-15deg); 
@@ -144,8 +146,8 @@
             transform: scaleX(-1) rotate(5deg); 
         }
 
-        /* --- RIGHT SIDE ANIMALS (Tiger Group) - MIRRORED --- */
-        /* scaleX(-1) applied to mirror individual alignment with respect to position */
+        /* Right Side Animals (Now Tiger group) - MIRRORED to look left (inward) */
+        /* `scaleX(-1)` applied to mirror individual alignment with respect to position */
         .pa-tiger { 
             top: -20px; right: -20px; 
             transform: scaleX(-1) rotate(15deg); 
@@ -171,7 +173,7 @@
             transform: scaleX(-1) rotate(-5deg); 
         }
 
-        /* Float animations handle MIRRORED state in keyframes */
+        /* Float animations apply MIRRORED state in keyframes for right cluster */
         .pa-tiger { animation: floatSimpleTiger 4s ease-in-out infinite; }
         .pa-monkey { animation: floatSimpleMonkey 3s ease-in-out infinite; }
         .pa-zebra { animation: floatSimpleZebra 5s ease-in-out infinite; }
@@ -184,14 +186,14 @@
         .pa-leopard { animation: floatSimpleLeopard 4s ease-in-out infinite; }
 
         /* Smoothed Behaviors, mirrored transform sequence used (scaleX(-1) first) */
-        /* Monkey group (Left side) is naturally facing right, scaleX(-1) makes them look center */
+        /* Monkey group (Left side) unmirrored looks outward, mirrored looks inward center (right) */
         @keyframes floatSimpleMonkey { 0%, 100% { transform: scaleX(-1) rotate(-15deg); } 50% { transform: scaleX(-1) rotate(-8deg); } }
         @keyframes floatSimpleLion { 0%, 100% { transform: scaleX(-1) rotate(-10deg) scale(1); } 50% { transform: scaleX(-1) rotate(-10deg) scale(1.06); } }
         @keyframes floatSimpleElephant { 0%, 100% { transform: scaleX(-1) rotate(10deg) translateY(0); } 50% { transform: scaleX(-1) rotate(14deg) translateY(-4px); } }
         @keyframes floatSimpleParrot { 0%, 100% { transform: scaleX(-1) rotate(-15deg) translateY(0); } 30% { transform: scaleX(-1) rotate(-15deg) translateY(-5px); } 60% { transform: scaleX(-1) rotate(-8deg) translateY(0); } }
         @keyframes floatSimpleLeopard { 0%, 100% { transform: scaleX(-1) rotate(5deg) scaleY(1); } 50% { transform: scaleX(-1) rotate(5deg) scaleY(0.9) translateY(4px); } }
 
-        /* Tiger group (Right side) naturally faces left. scaleX(-1) mirrors them to look right, inward to center */
+        /* Tiger group (Right side) unmirrored looks outward, mirrored looks inward center (left) */
         @keyframes floatSimpleTiger { 0%, 100% { transform: scaleX(-1) rotate(15deg) translateX(0); } 50% { transform: scaleX(-1) rotate(15deg) translateX(8px); } }
         @keyframes floatSimpleZebra { 0%, 100% { transform: scaleX(-1) rotate(10deg) translateY(0); } 50% { transform: scaleX(-1) rotate(20deg) translateY(6px); } }
         @keyframes floatSimpleGiraffe { 0%, 100% { transform: scaleX(-1) rotate(-10deg); } 50% { transform: scaleX(-1) rotate(-4deg); } }
@@ -386,7 +388,7 @@
             <div class="floating-leaf l2">🍃</div>
         </div>
 
-        <!-- DYNAMIC MEDIUM JUNGLE ANIMALS EMBEDDED ON THE PANEL EDGES (z-index: 15) - Positions Switched -->
+        <!-- DYNAMIC MEDIUM JUNGLE ANIMALS EMBEDDED ON THE PANEL EDGES (z-index: 15) -->
         <!-- Left Side Animals (Now Monkey group) - naturally faces left (original was flipped), scaleX(-1) included in keyframes/pos makes them face inward -->
         <div class="panel-animal pa-monkey">🐒</div>
         <div class="panel-animal pa-lion">🦁</div>
@@ -394,7 +396,7 @@
         <div class="panel-animal pa-parrot">🦜</div>
         <div class="panel-animal pa-leopard">🐆</div>
         
-        <!-- Right Side Animals (Now Tiger group) - original naturally faces left, mirrored now faces right inward to center -->
+        <!-- Right Side Animals (Now Tiger group) - original naturally faces left, mirrored `scaleX(-1)` now faces right (inward center) -->
         <div class="panel-animal pa-tiger">🐅</div>
         <div class="panel-animal pa-zebra">🦓</div>
         <div class="panel-animal pa-giraffe">🦒</div>
