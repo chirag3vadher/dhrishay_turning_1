@@ -115,11 +115,17 @@
             opacity: 0.85;
         }
 
-        /* Header animals kept near the name */
+        /* All Animals Placed on Edges */
         .pa-tiger { top: 15px; left: 15px; font-size: 2.5rem; animation: prowlTiger 4s ease-in-out infinite; }
         .pa-monkey { top: 15px; right: 15px; font-size: 2.5rem; transform-origin: top center; animation: swingMonkeyAnim 3s ease-in-out infinite; }
         .pa-zebra { top: 85px; left: 10px; font-size: 2.2rem; animation: grazeZebra 5s ease-in-out infinite; }
         .pa-lion { top: 85px; right: 10px; font-size: 2.3rem; animation: puffLion 4.5s ease-in-out infinite; }
+        .pa-giraffe { top: 320px; left: 12px; font-size: 3rem; transform-origin: bottom center; animation: swayGiraffeAnim 6s ease-in-out infinite; }
+        .pa-elephant { top: 320px; right: 12px; font-size: 2.8rem; animation: rockElephant 5s ease-in-out infinite; }
+        .pa-hippo { top: 480px; left: 10px; font-size: 2.4rem; animation: bobHippo 4s ease-in-out infinite; }
+        .pa-parrot { top: 480px; right: 10px; font-size: 2.3rem; transform-origin: bottom center; animation: jitterParrot 3s ease-in-out infinite; }
+        .pa-crocodile { top: 760px; left: 12px; font-size: 2.2rem; animation: creepCrocodile 7s ease-in-out infinite; }
+        .pa-leopard { top: 760px; right: 12px; font-size: 2.4rem; transform-origin: bottom center; animation: crouchLeopard 4s ease-in-out infinite; }
 
         /* Animal Unique Behaviors */
         @keyframes prowlTiger { 0%, 100% { transform: rotate(-15deg) translateX(0); } 50% { transform: rotate(-15deg) translateX(6px); } }
@@ -252,24 +258,6 @@
             filter: contrast(1.05) saturate(1.05); 
         }
 
-        /* --- ANIMALS CLUSTERED AROUND THE SIDES OF THE POLAROID --- */
-        .polaroid-animal {
-            position: absolute;
-            pointer-events: none;
-            filter: drop-shadow(2px 3px 4px rgba(0,0,0,0.25));
-            z-index: 40; /* Top Layer */
-        }
-        
-        /* Left Side */
-        .pa-elephant { top: 10%; left: -65px; font-size: 2.8rem; animation: rockElephant 5s ease-in-out infinite; }
-        .pa-leopard { top: 45%; left: -50px; font-size: 2.3rem; transform-origin: bottom center; animation: crouchLeopard 4s ease-in-out infinite; }
-        .pa-parrot { top: 80%; left: -40px; font-size: 2.2rem; transform-origin: bottom center; animation: jitterParrot 3s ease-in-out infinite; }
-        
-        /* Right Side */
-        .pa-giraffe { top: 5%; right: -60px; font-size: 3rem; transform-origin: bottom center; animation: swayGiraffeAnim 6s ease-in-out infinite; }
-        .pa-hippo { top: 45%; right: -50px; font-size: 2.4rem; animation: bobHippo 4s ease-in-out infinite; }
-        .pa-crocodile { top: 80%; right: -45px; font-size: 2.2rem; animation: creepCrocodile 7s ease-in-out infinite; }
-
         /* --- FUN FACT EXPLORER NOTE --- */
         .fun-fact-box {
             background: rgba(255, 255, 255, 0.9);
@@ -338,11 +326,17 @@
             <div class="floating-leaf l2">🍃</div>
         </div>
 
-        <!-- STATIC HEADER ANIMALS (Kept near the name) -->
+        <!-- DYNAMIC JUNGLE ANIMALS EMBEDDED ON THE PANEL EDGES -->
         <div class="panel-animal pa-tiger">🐅</div>
         <div class="panel-animal pa-monkey">🐒</div>
         <div class="panel-animal pa-zebra">🦓</div>
         <div class="panel-animal pa-lion">🦁</div>
+        <div class="panel-animal pa-giraffe">🦒</div>
+        <div class="panel-animal pa-elephant">🐘</div>
+        <div class="panel-animal pa-hippo">🦛</div>
+        <div class="panel-animal pa-parrot">🦜</div>
+        <div class="panel-animal pa-crocodile">🐊</div>
+        <div class="panel-animal pa-leopard">🐆</div>
 
         <!-- CORNER LEAVES -->
         <div class="corner-leaf cl-tl">🌿</div>
@@ -376,19 +370,8 @@
                 <p>Join our safari to celebrate his 1st Birthday</p>
             </div>
 
-            <!-- SAFARI POLAROID PHOTO WITH ANIMALS ALONG THE SIDES -->
+            <!-- SAFARI POLAROID PHOTO -->
             <div class="photo-wrapper">
-                
-                <!-- Left Side Animals -->
-                <div class="polaroid-animal pa-elephant">🐘</div>
-                <div class="polaroid-animal pa-leopard">🐆</div>
-                <div class="polaroid-animal pa-parrot">🦜</div>
-                
-                <!-- Right Side Animals -->
-                <div class="polaroid-animal pa-giraffe">🦒</div>
-                <div class="polaroid-animal pa-hippo">🦛</div>
-                <div class="polaroid-animal pa-crocodile">🐊</div>
-
                 <div class="photo-container">
                     <img src="Dhrishay.jpg" alt="Dhrishay">
                 </div>
