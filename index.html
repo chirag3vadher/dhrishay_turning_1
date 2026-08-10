@@ -257,17 +257,16 @@
             position: absolute;
             pointer-events: none;
             filter: drop-shadow(2px 3px 4px rgba(0,0,0,0.25));
+            z-index: 40; /* Top Layer */
         }
         
-        /* Behind the polaroid */
-        .pa-giraffe { top: 35%; right: -35px; font-size: 3rem; transform-origin: bottom center; animation: swayGiraffeAnim 6s ease-in-out infinite; z-index: 2; }
-        .pa-elephant { bottom: 25px; left: -40px; font-size: 2.8rem; animation: rockElephant 5s ease-in-out infinite; z-index: 2; }
-        .pa-hippo { bottom: 40px; right: -25px; font-size: 2.4rem; animation: bobHippo 4s ease-in-out infinite; z-index: 2; }
-        
-        /* In front of the polaroid */
-        .pa-parrot { top: 50%; left: -20px; font-size: 2.2rem; transform-origin: bottom center; animation: jitterParrot 3s ease-in-out infinite; z-index: 10; }
-        .pa-crocodile { bottom: -15px; right: -15px; font-size: 2.2rem; animation: creepCrocodile 7s ease-in-out infinite; z-index: 10; }
-        .pa-leopard { bottom: -10px; left: -15px; font-size: 2.3rem; transform-origin: bottom center; animation: crouchLeopard 4s ease-in-out infinite; z-index: 10; }
+        /* Spaced evenly around the lower periphery, pushed slightly outwards */
+        .pa-elephant { top: 45%; left: -65px; font-size: 2.8rem; animation: rockElephant 5s ease-in-out infinite; }
+        .pa-leopard { bottom: -30px; left: -30px; font-size: 2.3rem; transform-origin: bottom center; animation: crouchLeopard 4s ease-in-out infinite; }
+        .pa-parrot { bottom: -45px; left: 25%; font-size: 2.2rem; transform-origin: bottom center; animation: jitterParrot 3s ease-in-out infinite; }
+        .pa-crocodile { bottom: -45px; right: 25%; font-size: 2.2rem; animation: creepCrocodile 7s ease-in-out infinite; }
+        .pa-hippo { bottom: -30px; right: -30px; font-size: 2.4rem; animation: bobHippo 4s ease-in-out infinite; }
+        .pa-giraffe { top: 45%; right: -60px; font-size: 3rem; transform-origin: bottom center; animation: swayGiraffeAnim 6s ease-in-out infinite; }
 
 
         /* --- FUN FACT EXPLORER NOTE --- */
@@ -380,12 +379,12 @@
             <div class="photo-wrapper">
                 
                 <!-- Animals placed specifically around the lower portion of the polaroid -->
-                <div class="polaroid-animal pa-giraffe">🦒</div>
                 <div class="polaroid-animal pa-elephant">🐘</div>
-                <div class="polaroid-animal pa-hippo">🦛</div>
+                <div class="polaroid-animal pa-leopard">🐆</div>
                 <div class="polaroid-animal pa-parrot">🦜</div>
                 <div class="polaroid-animal pa-crocodile">🐊</div>
-                <div class="polaroid-animal pa-leopard">🐆</div>
+                <div class="polaroid-animal pa-hippo">🦛</div>
+                <div class="polaroid-animal pa-giraffe">🦒</div>
 
                 <div class="photo-container">
                     <img src="Dhrishay.jpg" alt="Dhrishay">
