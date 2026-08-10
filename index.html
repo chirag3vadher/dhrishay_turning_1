@@ -105,7 +105,7 @@
         .l1 { left: 30%; animation-duration: 24s; animation-delay: 3s; }
         .l2 { left: 80%; animation-duration: 28s; animation-delay: 11s; }
 
-        /* --- STATIC JUNGLE ANIMALS EMBEDDED ON THE PANEL EDGES --- */
+        /* --- DYNAMIC JUNGLE ANIMALS ON THE PANEL EDGES --- */
         .panel-animal {
             position: absolute;
             font-size: 2.8rem;
@@ -115,16 +115,29 @@
             opacity: 0.85;
         }
 
-        .pa-tiger { top: 15px; left: 15px; font-size: 2.5rem; transform: rotate(-15deg); }
-        .pa-monkey { top: 15px; right: 15px; font-size: 2.5rem; transform: scaleX(-1) rotate(15deg); }
-        .pa-zebra { top: 85px; left: 10px; font-size: 2.2rem; transform: rotate(-10deg); }
-        .pa-lion { top: 85px; right: 10px; font-size: 2.3rem; transform: scaleX(-1) rotate(10deg); }
-        .pa-giraffe { top: 320px; left: 12px; font-size: 3rem; transform: rotate(10deg); }
-        .pa-elephant { top: 320px; right: 12px; font-size: 2.8rem; transform: scaleX(-1) rotate(-10deg); }
-        .pa-hippo { top: 480px; left: 10px; font-size: 2.4rem; transform: rotate(-5deg); }
-        .pa-parrot { top: 480px; right: 10px; font-size: 2.3rem; transform: scaleX(-1) rotate(15deg); }
-        .pa-crocodile { top: 760px; left: 12px; font-size: 2.2rem; transform: rotate(5deg); }
-        .pa-leopard { top: 760px; right: 12px; font-size: 2.4rem; transform: scaleX(-1) rotate(-5deg); }
+        /* Animal Initial Placements & Animations */
+        .pa-tiger { top: 15px; left: 15px; font-size: 2.5rem; animation: prowlTiger 4s ease-in-out infinite; }
+        .pa-monkey { top: 15px; right: 15px; font-size: 2.5rem; transform-origin: top center; animation: swingMonkeyAnim 3s ease-in-out infinite; }
+        .pa-zebra { top: 85px; left: 10px; font-size: 2.2rem; animation: grazeZebra 5s ease-in-out infinite; }
+        .pa-lion { top: 85px; right: 10px; font-size: 2.3rem; animation: puffLion 4.5s ease-in-out infinite; }
+        .pa-giraffe { top: 320px; left: 12px; font-size: 3rem; transform-origin: bottom center; animation: swayGiraffeAnim 6s ease-in-out infinite; }
+        .pa-elephant { top: 320px; right: 12px; font-size: 2.8rem; animation: rockElephant 5s ease-in-out infinite; }
+        .pa-hippo { top: 480px; left: 10px; font-size: 2.4rem; animation: bobHippo 4s ease-in-out infinite; }
+        .pa-parrot { top: 480px; right: 10px; font-size: 2.3rem; transform-origin: bottom center; animation: jitterParrot 3s ease-in-out infinite; }
+        .pa-crocodile { top: 760px; left: 12px; font-size: 2.2rem; animation: creepCrocodile 7s ease-in-out infinite; }
+        .pa-leopard { top: 760px; right: 12px; font-size: 2.4rem; transform-origin: bottom center; animation: crouchLeopard 4s ease-in-out infinite; }
+
+        /* Animal Unique Behaviors */
+        @keyframes prowlTiger { 0%, 100% { transform: rotate(-15deg) translateX(0); } 50% { transform: rotate(-15deg) translateX(6px); } }
+        @keyframes swingMonkeyAnim { 0%, 100% { transform: scaleX(-1) rotate(15deg); } 50% { transform: scaleX(-1) rotate(-5deg); } }
+        @keyframes grazeZebra { 0%, 100% { transform: rotate(-10deg) translateY(0); } 50% { transform: rotate(-20deg) translateY(4px); } }
+        @keyframes puffLion { 0%, 100% { transform: scaleX(-1) rotate(10deg) scale(1); } 50% { transform: scaleX(-1) rotate(10deg) scale(1.08); } }
+        @keyframes swayGiraffeAnim { 0%, 100% { transform: rotate(10deg); } 50% { transform: rotate(2deg); } }
+        @keyframes rockElephant { 0%, 100% { transform: scaleX(-1) rotate(-10deg) translateY(0); } 50% { transform: scaleX(-1) rotate(-15deg) translateY(-3px); } }
+        @keyframes bobHippo { 0%, 100% { transform: rotate(-5deg) translateY(0); } 50% { transform: rotate(-5deg) translateY(5px); } }
+        @keyframes jitterParrot { 0%, 100% { transform: scaleX(-1) rotate(15deg) translateY(0); } 30% { transform: scaleX(-1) rotate(15deg) translateY(-4px); } 60% { transform: scaleX(-1) rotate(5deg) translateY(0); } }
+        @keyframes creepCrocodile { 0%, 100% { transform: rotate(5deg) translateX(0); } 50% { transform: rotate(5deg) translateX(8px); } }
+        @keyframes crouchLeopard { 0%, 100% { transform: scaleX(-1) rotate(-5deg) scaleY(1); } 50% { transform: scaleX(-1) rotate(-5deg) scaleY(0.85) translateY(3px); } }
 
         /* --- CORNER JUNGLE LEAVES BORDER --- */
         .corner-leaf {
@@ -144,7 +157,7 @@
         /* --- LIGHT BACKGROUND HEADER --- */
         .header-image {
             background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(253,244,227,0.95) 100%);
-            padding: 40px 15px 95px 15px; /* Added a bit more padding for the polaroid overlap */
+            padding: 40px 15px 95px 15px; 
             text-align: center;
             border-radius: 20px 20px 0 0;
             position: relative;
@@ -190,7 +203,7 @@
         .photo-wrapper {
             position: relative;
             width: 220px;
-            margin: -80px auto 25px auto; /* Overlaps the header border */
+            margin: -80px auto 25px auto; 
             z-index: 5;
             transform: rotate(-4deg);
             transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
@@ -198,10 +211,9 @@
 
         .photo-wrapper:hover {
             transform: rotate(0deg) scale(1.05);
-            z-index: 30; /* Pops above the leaves on hover */
+            z-index: 30; 
         }
 
-        /* The Translucent Tape holding the polaroid */
         .photo-wrapper::after {
             content: '';
             position: absolute;
@@ -210,7 +222,7 @@
             transform: translateX(-50%) rotate(2deg);
             width: 80px;
             height: 25px;
-            background: rgba(212, 175, 55, 0.65); /* Safari Gold Translucent Washi Tape */
+            background: rgba(212, 175, 55, 0.65); 
             border: 1px dashed rgba(255,255,255,0.6);
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             z-index: 10;
@@ -218,13 +230,12 @@
 
         .photo-container {
             background: #ffffff;
-            padding: 12px 12px 45px 12px; /* White polaroid border */
+            padding: 12px 12px 45px 12px; 
             box-shadow: 0 15px 35px rgba(0,0,0,0.15);
             border-radius: 4px;
             position: relative;
         }
 
-        /* Subtle "WILD ONE" stamp on the bottom of the polaroid */
         .photo-container::after {
             content: 'WILD ONE';
             position: absolute;
@@ -240,10 +251,10 @@
 
         .photo-container img {
             width: 100%;
-            height: 196px; /* Creates a perfect square for the image area */
+            height: 196px; 
             object-fit: cover;
             border-radius: 2px;
-            filter: contrast(1.05) saturate(1.05); /* Slight enhancement for the photo */
+            filter: contrast(1.05) saturate(1.05); 
         }
 
         /* --- FUN FACT EXPLORER NOTE --- */
@@ -317,7 +328,7 @@
             <div class="floating-leaf l2">🍃</div>
         </div>
 
-        <!-- STATIC JUNGLE ANIMALS EMBEDDED ON THE PANEL EDGES -->
+        <!-- DYNAMIC JUNGLE ANIMALS EMBEDDED ON THE PANEL EDGES -->
         <div class="panel-animal pa-tiger">🐅</div>
         <div class="panel-animal pa-monkey">🐒</div>
         <div class="panel-animal pa-zebra">🦓</div>
