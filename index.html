@@ -47,8 +47,8 @@
             position: relative;
             z-index: 10;
             border: 3px solid rgba(255, 255, 255, 0.6);
-            /* Important: Keep overflow visible so the medium-sized animals can peek *inside* the card from the edges */
-            overflow: visible; 
+            /* CHANGED: hidden clips anything (like the animals) going outside the border */
+            overflow: hidden; 
         }
 
         /* --- DYNAMIC ORGANIC FLOATING CONTAINER --- */
